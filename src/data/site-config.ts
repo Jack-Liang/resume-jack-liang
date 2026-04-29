@@ -7,13 +7,13 @@ import type { SiteConfig } from '../types';
 const siteConfig: SiteConfig = {
     logo: {
         src: logoUrl,
-        alt: 'Jack-Liang logo'
+        alt: 'Jack Liang logo'
     },
     title: 'Jack-Liang',
-    description: 'Jack-Liang 的个人网站',
+    description: 'Jack Liang 的个人网站',
     image: {
         src: defaultSocial,
-        alt: 'Jack-Liang - 个人社交媒体链接'
+        alt: 'Jack Liang - 个人社交媒体链接'
     },
     primaryNavLinks: [
         {
@@ -84,7 +84,7 @@ const siteConfig: SiteConfig = {
     ],
     hero: {
         title: '你好!',
-        text: "我是 Jack-Liang，一个 ABAP 开发者。我很高兴能认识你。",
+        text: "我是 Jack Liang，一个 ABAP 开发者。我很高兴能认识你。",
         avatar: {
             src: heroAvatar,
             alt: 'Jack-Liang'
