@@ -29,7 +29,7 @@ const siteConfig: SiteConfig = {
             href: '/about'
         },
         {
-            text: '联系',
+            text: '和我联系',
             href: '/contact'
         },
         // {
