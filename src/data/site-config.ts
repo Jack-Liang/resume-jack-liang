@@ -84,7 +84,7 @@ const siteConfig: SiteConfig = {
     ],
     hero: {
         title: '你好!',
-        text: "我是 Jack Liang，一个 ABAP 开发者。我很高兴能认识你。",
+        text: "我是 Jack Liang，一个 ABAP 开发者。很高兴能认识你。",
         avatar: {
             src: heroAvatar,
             alt: 'Jack-Liang'
@@ -94,7 +94,7 @@ const siteConfig: SiteConfig = {
         }
     },
     subscribe: {
-        enabled: true,
+        enabled: false,
         title: '订阅 Ovidius 新闻letter',
         text: '每周更新一次，直接在您的收件箱中接收最新新闻。',
         form: {
