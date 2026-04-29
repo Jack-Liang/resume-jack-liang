@@ -7,77 +7,87 @@ import type { SiteConfig } from '../types';
 const siteConfig: SiteConfig = {
     logo: {
         src: logoUrl,
-        alt: 'Ovidius logo'
+        alt: 'Jack-Liang logo'
     },
-    title: 'Ovidius',
-    description: 'Astro.js and Tailwind CSS theme for blogging by justgoodui.com',
+    title: 'Jack-Liang',
+    description: 'Jack-Liang 的个人网站',
     image: {
         src: defaultSocial,
-        alt: 'Ovidius - Astro.js and Tailwind CSS theme'
+        alt: 'Jack-Liang - 个人社交媒体链接'
     },
     primaryNavLinks: [
         {
-            text: 'Home',
+            text: '首页',
             href: '/'
         },
         {
-            text: 'Blog',
+            text: '文章',
             href: '/blog'
         },
         {
-            text: 'About',
+            text: '关于我',
             href: '/about'
         },
         {
-            text: 'Contact',
+            text: '联系',
             href: '/contact'
         },
-        {
-            text: 'Download Theme',
-            href: 'https://github.com/JustGoodUI/ovidius-astro-theme'
-        }
+        // {
+        //     text: 'Download Theme',
+        //     href: 'https://github.com/JustGoodUI/ovidius-astro-theme'
+        // }
     ],
     secondaryNavLinks: [
         {
-            text: 'About',
+            text: '关于我',
             href: '/about'
         },
         {
-            text: 'Terms of Service',
+            text: '服务条款',
             href: '/terms'
         },
         {
-            text: 'Contact',
+            text: '和我联系',
             href: '/contact'
         },
-        {
-            text: 'Download Theme',
-            href: 'https://github.com/JustGoodUI/ovidius-astro-theme'
-        }
+        // {
+        //     text: '下载主题',
+        //     href: 'https://github.com/JustGoodUI/ovidius-astro-theme'
+        // }
     ],
     socialLinks: [
         {
-            text: 'Go to GitHub repo',
-            href: 'https://github.com/JustGoodUI/ovidius-astro-theme',
+            text: 'GitHub 主页',
+            href: 'https://github.com/Jack-Liang',
             icon: 'github'
         },
         {
-            text: 'Follow on Instagram',
-            href: 'https://instagram.com/',
-            icon: 'instagram'
+            text: '知乎专栏',
+            href: 'https://www.zhihu.com/column/c_1553466158648614912',
+            icon: 'zhihu'
         },
+        // {
+        //     text: '关注 Instagram',
+        //     href: 'https://instagram.com/',
+        //     icon: 'instagram'
+        // },
+        // {
+        //     text: '关注 Bluesky',
+        //     href: 'https://bsky.app/profile/justgoodui.com',
+        //     icon: 'bluesky'
+        // },
         {
-            text: 'Follow on Bluesky',
-            href: 'https://bsky.app/profile/justgoodui.com',
-            icon: 'bluesky'
+            text: '关注 Bilibili',
+            href: 'https://space.bilibili.com/26855033',
+            icon: 'bilibili'
         }
     ],
     hero: {
-        title: 'Hi there!',
-        text: "My name is Justin Case. I'm a freelance front-end developer, author and speaker based in Austin, TX. It's nice to meet you.",
+        title: '你好!',
+        text: "我是 Jack-Liang，一个 ABAP 开发者。我很高兴能认识你。",
         avatar: {
             src: heroAvatar,
-            alt: 'Justin Case'
+            alt: 'Jack-Liang'
         },
         backgroundImage: {
             src: heroBackground
@@ -85,8 +95,8 @@ const siteConfig: SiteConfig = {
     },
     subscribe: {
         enabled: true,
-        title: 'Subscribe to Ovidius Newsletter',
-        text: 'One update per week. All the latest news directly in your inbox.',
+        title: '订阅 Ovidius 新闻letter',
+        text: '每周更新一次，直接在您的收件箱中接收最新新闻。',
         form: {
             action: 'https://justgoodthemes.us3.list-manage.com/subscribe/post?u=78f1bab16028354caeb23aecd&amp;id=4a7330d117&amp;f_id=005c48e2f0',
             emailFieldName: 'EMAIL',

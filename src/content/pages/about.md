@@ -1,19 +1,19 @@
 ---
-title: About
+title: 关于我
 featureImage:
   src: '../../assets/images/about.jpg'
   alt: The portrait of a person
 seo:
-  title: About
-  description: About Justin Case
+  title: 关于我
+  description: 关于我自己的信息
   image:
     src: '../../assets/images/about.jpg'
 ---
 
-**This is demo content for [Ovidius](https://github.com/JustGoodUI) Astro.js and Tailwind CSS theme created by [justgoodui.com](https://justgoodui.com/).**
+**这是由 [justgoodui.com](https://justgoodui.com/) 创建的 [Ovidius](https://github.com/JustGoodUI) Astro.js 和 Tailwind CSS 主题的演示内容。**
 
-Justin Case is a senior developer from Vilnius, Lithuania. After graduating from The College with a degree in Computer Science, he worked for three small web shops where he honed his development skills and love for JavaScript.
+Justin Case 是一位来自立陶宛维尔纽斯的高级开发人员。从学院计算机科学专业毕业后，他在三家小型网络公司工作，在那里磨练了他的开发技能和对 JavaScript 的热爱。
 
-> Creativity is allowing yourself to make mistakes. Design is knowing which ones to keep.
+> 创造力是允许自己犯错。设计是知道该保留哪些错误。
 
-His work has been recognized by Communication Arts, IBM, How, ID, IdN, AIGA, Effie, Archive, Graphis, AdFed and Rockport. Net magazine named him a person to watch in 2023.
+他的作品获得了 Communication Arts、IBM、How、ID、IdN、AIGA、Effie、Archive、Graphis、AdFed 和 Rockport 的认可。Net 杂志将他评为 2023 年值得关注的人物。

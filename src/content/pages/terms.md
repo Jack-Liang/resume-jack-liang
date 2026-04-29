@@ -2,48 +2,48 @@
 title: Terms of Service
 ---
 
-**Last updated on June 1, 2023**
+**最后更新日期：2023年6月1日**
 
-These Terms of Service ("Terms") govern your access to and use of [Website Name] ("the Website") and any related services provided by [Website Owner/Company] ("we," "us," or "our"). Please read these Terms carefully before using the Website.
+本服务条款（"条款"）管辖您对[Jack-Liang.com](https://jack-liang.com/) 的访问和使用，以及[网站所有者/公司]（"我们"）提供的任何相关服务。在使用本网站之前，请仔细阅读这些条款。
 
-**1. Acceptance of Terms**
+**1. 条款的接受**
 
-By accessing or using the Website, you agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms or the Privacy Policy, please do not use the Website.
+通过访问或使用本网站，您同意受这些条款和我们的隐私政策的约束。如果您不同意这些条款或隐私政策，请不要使用本网站。
 
-**2. Changes to Terms**
+**2. 条款的变更**
 
-We reserve the right to modify, amend, or update these Terms at any time. Such changes will be effective upon posting on the Website. It is your responsibility to review these Terms regularly. Your continued use of the Website after any changes indicates your acceptance of the revised Terms.
+我们保留随时修改、修订或更新这些条款的权利。此类变更将在发布于本网站时生效。您有责任定期审查这些条款。您在变更后继续使用本网站即表示您接受修订后的条款。
 
-**3. Use of the Website**
+**3. 网站的使用**
 
-You agree to use the Website for lawful purposes and in a manner consistent with these Terms. You are responsible for any content you post or submit on the Website.
+您同意将本网站用于合法目的，并以符合这些条款的方式使用。您对您在本网站上发布或提交的任何内容负责。
 
-**4. Registration and Account**
+**4. 注册和账户**
 
-Certain areas of the Website may require registration or the creation of an account. You agree to provide accurate, current, and complete information during the registration process and to update such information to keep it accurate, current, and complete. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.
+本网站的某些区域可能需要注册或创建账户。您同意在注册过程中提供准确、最新和完整的信息，并更新此类信息以保持其准确、最新和完整。您有责任对您的账户凭据保密，并对您账户下发生的所有活动负责。
 
-**5. Content and Intellectual Property**
+**5. 内容和知识产权**
 
-The content on the Website, including text, graphics, logos, images, audio, video, software, and other materials, is owned or licensed by us and is protected by copyright and other intellectual property laws. You may not use, reproduce, or distribute the content without our prior written consent.
+本网站上的内容，包括文本、图形、标识、图像、音频、视频、软件和其他材料，由我们拥有或授权，并受版权和其他知识产权法律的保护。未经我们事先书面同意，您不得使用、复制或分发该内容。
 
-**6. Third-Party Links**
+**6. 第三方链接**
 
-The Website may contain links to third-party websites or resources. We do not endorse and are not responsible for the content, products, or services provided by third parties. Your use of such websites is at your own risk.
+本网站可能包含指向第三方网站或资源的链接。我们不认可也不对第三方提供的内容、产品或服务负责。您使用此类网站的风险由您自行承担。
 
-**7. Termination**
+**7. 终止**
 
-We may, at our sole discretion, terminate or suspend your access to the Website at any time and for any reason, without notice.
+我们可自行决定随时以任何理由终止或暂停您对本网站的访问，无需通知。
 
-**8. Disclaimer**
+**8. 免责声明**
 
-The Website and its content are provided on an "as is" and "as available" basis. We make no warranties or representations about the accuracy or completeness of the content. We do not guarantee that the Website will be error-free or uninterrupted.
+本网站及其内容按"原样"和"可用"基础提供。我们对内容的准确性或完整性不作任何保证或陈述。我们不保证本网站不会出现错误或中断。
 
-**9. Limitation of Liability**
+**9. 责任限制**
 
-To the fullest extent permitted by law, we shall not be liable for any direct, indirect, incidental, special, consequential, or exemplary damages, including but not limited to damages for loss of profits, goodwill, use, data, or other intangible losses, arising out of or in connection with the use or inability to use the Website.
+在法律允许的最大范围内，我们不对因使用或无法使用本网站而产生的任何直接、间接、附带、特殊、后果性或惩戒性损害承担责任，包括但不限于利润、商誉、使用、数据或其他无形损失。
 
-**10. Governing Law**
+**10. 适用法律**
 
-These Terms are governed by and construed in accordance with the laws of [Your Jurisdiction], without regard to its conflict of laws principles. Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the courts of [Your Jurisdiction].
+这些条款受[您的司法管辖区]法律管辖并依其解释，不考虑其法律冲突原则。因这些条款引起的任何争议应受[您的司法管辖区]法院的专属管辖。
 
-_Thank you for reading our Terms of Service. By using the Website, you agree to be bound by these Terms._
+_感谢您阅读我们的服务条款。通过使用本网站，您同意受这些条款的约束。_
