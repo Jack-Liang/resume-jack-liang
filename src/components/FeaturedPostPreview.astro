@@ -10,7 +10,7 @@ const { title, publishDate, updatedDate, featureImage, excerpt } = post.data;
 <article class="mb-12 sm:mb-16">
     <header class="max-w-3xl mx-auto">
         <div class="mb-2 text-sm tracking-wider uppercase text-slate-500 sm:mb-3">
-            <span class="text-primary">Featured</span>
+            <span class="text-primary">精选</span>
             {' / '}
             <FormattedDate date={publishDate} />
             {
@@ -54,7 +54,7 @@ const { title, publishDate, updatedDate, featureImage, excerpt } = post.data;
             class="bg-primary hover:shadow-button inline-flex items-center justify-center gap-1.5 rounded-full px-8 py-2.5 font-semibold text-white transition duration-300"
             href={`/blog/${post.id}/`}
         >
-            Continue Reading
+            继续阅读
         </a>
     </div>
 </article>
