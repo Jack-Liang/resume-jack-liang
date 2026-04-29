@@ -4,8 +4,8 @@ featureImage:
   src: '../../assets/images/about.jpg'
   alt: The portrait of a person
 seo:
-  title: 关于我
-  description: 关于我自己的信息
+  title: 关于我 - 个人简介
+  description: 关于我个人背景、技能和经历的详细介绍页面
   image:
     src: '../../assets/images/about.jpg'
 ---
