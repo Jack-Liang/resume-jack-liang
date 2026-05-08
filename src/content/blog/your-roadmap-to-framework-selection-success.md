@@ -7,7 +7,6 @@ featureImage:
   alt: Stairs
   caption: 从底层仰望灯塔的楼梯
 isFeatured: true
-draft: true
 seo:
   image:
     src: '../../assets/images/post-5.jpg'
