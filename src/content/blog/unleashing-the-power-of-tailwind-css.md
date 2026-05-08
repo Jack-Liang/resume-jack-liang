@@ -8,6 +8,7 @@ featureImage:
 seo:
   image:
     src: '../../assets/images/post-7.jpg'
+draft: true
 ---
 
 In the ever-evolving world of web development, staying on top of the latest trends and tools is essential. One such tool that has gained immense popularity in recent years is Tailwind CSS. Tailwind CSS is not just another CSS framework; it's a utility-first framework that revolutionizes the way developers write and manage their styles. In this post, we'll explore the ins and outs of Tailwind CSS and why it's a game-changer for modern web development.

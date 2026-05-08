@@ -9,7 +9,9 @@ import siteConfig from '../data/site-config';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { sortPostsByDateDesc } from '../utils/post-utils';
 
-const posts = (await getCollection('blog')).sort(sortPostsByDateDesc);
+const posts = (await getCollection('blog'))
+    .filter(({ data }) => !data.draft)
+    .sort(sortPostsByDateDesc);
 const featuredPosts = posts.filter(({ data }) => data.isFeatured);
 const latestPosts = posts.filter(({ data }) => !data.isFeatured).slice(0, 3);
 ---

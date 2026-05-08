@@ -8,6 +8,7 @@ featureImage:
 seo:
   image:
     src: '../../assets/images/post-6.jpg'
+draft: true
 ---
 
 Are you interested in embarking on a rewarding career as a front-end developer or looking to advance your existing skills in this dynamic field? Front-end development is an exciting and ever-evolving realm of the tech industry, and to succeed, having a well-defined roadmap can make all the difference. In this post, we'll provide you with "The Ultimate Front-End Developer Career Roadmap" to guide you through the journey from a beginner to an expert.

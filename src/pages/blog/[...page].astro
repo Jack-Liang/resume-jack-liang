@@ -9,7 +9,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { sortPostsByDateDesc } from '../../utils/post-utils';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-    const posts = (await getCollection('blog')).sort(sortPostsByDateDesc);
+    const posts = (await getCollection('blog'))
+        .filter(({ data }) => !data.draft)
+        .sort(sortPostsByDateDesc);
     return paginate(posts, { pageSize: siteConfig.postsPerPage || 5 });
 }
 

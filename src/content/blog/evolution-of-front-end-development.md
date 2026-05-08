@@ -9,6 +9,7 @@ featureImage:
 seo:
   image:
     src: '../../assets/images/post-9.jpg'
+draft: true
 ---
 
 Front-end development has come a long way since the early days of the World Wide Web. From static HTML pages to dynamic and interactive web applications, the evolution of front-end development has been nothing short of remarkable. In this post, we'll take a fascinating journey through time to explore how front-end development has evolved over the years.

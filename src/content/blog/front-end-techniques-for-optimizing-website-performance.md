@@ -8,6 +8,7 @@ featureImage:
 seo:
   image:
     src: '../../assets/images/post-4.jpg'
+draft: true
 ---
 
 In an age where instant gratification is the norm, website performance is paramount. Slow-loading websites can frustrate users, affect search engine rankings, and ultimately lead to loss of traffic and revenue. Front-end optimization is the key to ensuring a fast, responsive, and user-friendly website. In this post, we'll explore some essential front-end techniques for optimizing website performance.
