@@ -1,0 +1,122 @@
+---
+const { class: className } = Astro.props;
+---
+
+<div id="search-box" class:list={['search-wrapper', className]}>
+    <div class="flex items-center gap-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input
+            id="search-input"
+            class="w-full py-3 text-lg outline-none"
+            type="text"
+            placeholder="搜索文章..."
+            autocomplete="off"
+            autocapitalize="none"
+        />
+        <button
+            id="search-close"
+            class="shrink-0 w-8 h-8 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors"
+            aria-label="Close search"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 6 6 18"></path>
+                <path d="m6 6 12 12"></path>
+            </svg>
+        </button>
+    </div>
+    <div id="search-results" class="mt-4 min-h-16 max-h-80 overflow-y-auto">
+        <div class="text-center text-slate-400 py-8">
+            <span class="text-4xl">🔍</span>
+            <p class="mt-2 text-sm">输入关键词开始搜索</p>
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    (function() {
+        var pagefind = null;
+        var searchInput, resultsContainer;
+
+        function initSearch() {
+            searchInput = document.getElementById('search-input');
+            resultsContainer = document.getElementById('search-results');
+
+            if (!searchInput || !resultsContainer) return;
+
+            async function loadPagefind() {
+                if (!pagefind) {
+                    try {
+                        var mod = await import('/pagefind/pagefind.js');
+                        pagefind = mod;
+                        await pagefind.init();
+                    } catch (e) {
+                        console.warn('Pagefind not available in dev mode');
+                        return null;
+                    }
+                }
+                return pagefind;
+            }
+
+            function renderEmpty() {
+                if (!resultsContainer) return;
+                resultsContainer.innerHTML = '<div class="text-center text-slate-400 py-8"><span class="text-4xl">🔍</span><p class="mt-2 text-sm">输入关键词开始搜索</p></div>';
+            }
+
+            function renderLoading() {
+                if (!resultsContainer) return;
+                resultsContainer.innerHTML = '<div class="text-center text-slate-400 py-8"><span class="text-2xl animate-pulse">搜索中...</span></div>';
+            }
+
+            function renderNoResults() {
+                if (!resultsContainer) return;
+                resultsContainer.innerHTML = '<div class="text-center text-slate-400 py-8"><span class="text-4xl">🤔</span><p class="mt-2 text-sm">没有找到相关结果</p></div>';
+            }
+
+            async function handleSearch(value) {
+                if (!value.trim()) {
+                    renderEmpty();
+                    return;
+                }
+
+                renderLoading();
+
+                var pf = await loadPagefind();
+                if (!pf) {
+                    renderNoResults();
+                    return;
+                }
+
+                var search = await pf.search(value);
+                var results = search.results.slice(0, 10);
+                var data = await Promise.all(results.map(function(r) { return r.data(); }));
+
+                if (data.length === 0) {
+                    renderNoResults();
+                    return;
+                }
+
+                if (!resultsContainer) return;
+                resultsContainer.innerHTML = data.map(function(d) {
+                    var excerpt = d.excerpt ? d.excerpt.replace(/<mark/g, '<mark class="bg-[#02738f]/20 text-[#02738f]"') : '';
+                    return '<a href="' + d.url + '" class="block p-4 mb-2 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors duration-200 group"><h3 class="font-semibold text-slate-700 group-hover:text-[#02738f] transition-colors duration-200">' + (d.meta && d.meta.title ? d.meta.title : '') + '</h3><p class="text-sm text-slate-500 mt-1 line-clamp-2">' + excerpt + '</p></a>';
+                }).join('');
+            }
+
+            var debounceTimer;
+            searchInput.addEventListener('input', function(e) {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(function() {
+                    handleSearch(e.target.value);
+                }, 200);
+            });
+
+            renderEmpty();
+        }
+
+        initSearch();
+        document.addEventListener('astro:after-swap', initSearch);
+    })();
+</script>

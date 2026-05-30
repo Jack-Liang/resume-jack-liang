@@ -2,6 +2,7 @@
 import HeaderNavLink from './HeaderNavLink.astro';
 import siteConfig from '../data/site-config';
 import CustomImage from './CustomImage.astro';
+import Search from './Search.astro';
 
 const primaryNavLinks = siteConfig.primaryNavLinks ?? [];
 
@@ -22,7 +23,17 @@ const { class: className } = Astro.props;
     }
     {
         primaryNavLinks.length > 0 && (
-            <nav class="relative" aria-label="Primary navigation">
+            <nav class="relative flex items-center gap-2" aria-label="Primary navigation">
+                <button
+                    id="search-toggle"
+                    class="inline-flex items-center justify-center w-10 h-10 text-slate-600 transition-colors duration-300 rounded-full cursor-pointer bg-slate-100 hover:bg-slate-200"
+                    aria-label="Search"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </svg>
+                </button>
                 <button
                     class="relative z-20 inline-flex items-center justify-center w-10 h-10 text-white transition-shadow duration-300 rounded-full cursor-pointer menu-toggle bg-primary hover:shadow-button"
                     aria-label="Open Menu"
@@ -47,6 +58,15 @@ const { class: className } = Astro.props;
         )
     }
 </header>
+
+<div id="search-modal" class="fixed inset-0 z-50 hidden" aria-hidden="true">
+    <div id="search-backdrop" class="fixed inset-0 backdrop-blur-sm bg-black/30"></div>
+    <div id="search-container" class="search-container absolute left-1/2 -translate-x-1/2 w-[90vw] max-w-xl bg-white rounded-2xl shadow-2xl overflow-hidden" style="top: 15vh;">
+        <div class="p-4">
+            <Search />
+        </div>
+    </div>
+</div>
 
 <style>
     @reference "tailwindcss";
@@ -133,6 +153,66 @@ const { class: className } = Astro.props;
             menu?.classList.toggle('is-visible');
         });
     }
+
+    function searchModal() {
+        const searchToggle = document.getElementById('search-toggle');
+        const searchModal = document.getElementById('search-modal');
+        const searchContainer = document.getElementById('search-container');
+        const searchBackdrop = document.getElementById('search-backdrop');
+        const searchInput = document.getElementById('search-input') as HTMLInputElement;
+
+        function closeSearch() {
+            searchModal?.classList.add('hidden');
+            searchModal?.setAttribute('aria-hidden', 'true');
+            if (searchContainer) {
+                searchContainer.style.maxHeight = '';
+                searchContainer.style.overflowY = '';
+            }
+            const input = document.getElementById('search-input') as HTMLInputElement;
+            if (input) input.value = '';
+            const results = document.getElementById('search-results');
+            if (results) {
+                results.innerHTML = `
+                    <div class="text-center text-slate-400 py-8">
+                        <span class="text-4xl">🔍</span>
+                        <p class="mt-2 text-sm">输入关键词开始搜索</p>
+                    </div>
+                `;
+            }
+        }
+
+        function openSearch() {
+            searchModal?.classList.remove('hidden');
+            searchModal?.setAttribute('aria-hidden', 'false');
+            setTimeout(() => searchInput?.focus(), 100);
+        }
+
+        searchToggle?.addEventListener('click', () => {
+            openSearch();
+            document.querySelector('.menu')?.classList.remove('is-visible');
+        });
+
+        document.addEventListener('click', (e) => {
+            const target = e.target as HTMLElement;
+            if (target.id === 'search-close' || target.closest('#search-close')) {
+                closeSearch();
+            }
+            if (target.id === 'search-backdrop') {
+                closeSearch();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !searchModal?.classList.contains('hidden')) {
+                closeSearch();
+            }
+        });
+    }
+
     menuToggle();
-    document.addEventListener('astro:after-swap', menuToggle);
+    searchModal();
+    document.addEventListener('astro:after-swap', () => {
+        menuToggle();
+        searchModal();
+    });
 </script>

@@ -1,13 +1,21 @@
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import pagefind from 'astro-pagefind';
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
 export default defineConfig({
     site: 'https://jack-liang.com',
     vite: {
         plugins: [tailwindcss()]
     },
-    integrations: [mdx(), sitemap()]
+    integrations: [
+        mdx(),
+        sitemap(),
+        pagefind({
+            indexConfig: {
+                excludeSelectors: ['[data-pagefind-ignore]', '[data-pagefind-ignore] *']
+            }
+        })
+    ]
 });
