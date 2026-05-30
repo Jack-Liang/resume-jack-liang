@@ -1,125 +1,107 @@
-# Ovidius - Astro & Tailwind CSS Theme by justgoodui.com
+# Jack-Liang Blog
 
-Ovidius is a single-author blog theme for Astro.js. Featuring a minimal, slick, responsive and content-focused design. For more Astro.js themes please check [justgoodui.com](https://justgoodui.com/).
+基于 [Ovidius](https://justgoodui.com/astro-themes/ovidius/) 主题修改的个人博客，使用 Astro.js 和 Tailwind CSS 构建。
 
-![Ovidius Astro.js Theme](public/ovidius-preview.jpg)
+![Preview](public/ovidius-preview.jpg)
 
-[![Deploy to Netlify Button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/JustGoodUI/ovidius-astro-theme)
+## 主题特性
 
-Clicking the button above ☝️ will create a new repo for you that looks exactly like this one, and sets that repo up immediately for deployment on Netlify.
-
-## Theme Features:
-
-- ✅ Featured post support
-- ✅ Subscribe form
+- ✅ 精选文章支持
+- ✅ 订阅表单 (Mailchimp)
 - ✅ Tailwind CSS
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-- ✅ Optimized images using Astro’s `Image` component
+- ✅ SEO 优化 (canonical URLs, OpenGraph)
+- ✅ 站点地图
+- ✅ RSS 订阅
+- ✅ Markdown & MDX 支持
+- ✅ 图片优化 (Astro Image)
+- ✅ 标签筛选与排序
+- ✅ 站内搜索 (Pagefind)
+- ✅ Cloudflare Pages 部署
 
-## Template Integrations
+## 集成包
 
-- @astrojs/tailwind - https://docs.astro.build/en/guides/integrations-guide/tailwind/
-- @astrojs/sitemap - https://docs.astro.build/en/guides/integrations-guide/sitemap/
-- @astrojs/mdx - https://docs.astro.build/en/guides/markdown-content/
-- @astrojs/rss - https://docs.astro.build/en/guides/rss/
+- `@astrojs/tailwind` - Tailwind CSS 集成
+- `@astrojs/sitemap` - 站点地图生成
+- `@astrojs/mdx` - MDX 支持
+- `@astrojs/rss` - RSS 订阅
+- `@astrojs/cloudflare` - Cloudflare Pages 部署
+- `astro-pagefind` - 静态站点搜索
 
-## ⚙️ Configuration Notes
+## 配置说明
 
 ### `astro.config.mjs`
 
-Set your deployed domain in the `site` property:
+设置部署域名：
 
-```js
-// astro.config.mjs
+```javascript
 export default defineConfig({
-  site: 'https://example.com'
+    site: 'https://jack-liang.com'
 });
 ```
 
-This is required for correct image optimization and sitemap generation.
-
 ### `site-config.ts`
 
-All site-wide data and theme options are stored in `src/data/site-config.ts`. It provides a single configuration object used throughout the theme for navigation, branding, hero content, social links, and more.
+所有站点配置在 `src/data/site-config.ts`：
 
-You can update this file to customize:
+- 站点信息 - 标题、描述、Logo
+- 导航链接
+- 社交链接
+- Hero 区域 - 头像、背景图
+- 分页设置
 
-- Site identity — title, description, logo, and default social share image
-- Navigation — primary and secondary navigation links
-- Social links — icons and URLs for supported platforms
-- Hero section — title, text, avatar, and background image
-- Newsletter subscription — form settings suitable for Mailchimp, Formspree, ConvertKit, or other form-based providers. The form supports a custom action URL, configurable email and hidden fields, and an optional honeypot field for spam protection.
-- Pagination — posts per page for blog listings
+### 图片
 
-Images can be referenced either as imports from `src/assets/` (for optimized Astro images) or as string paths from the `public/` directory.
+- 内容图片：放在 `src/assets/`
+- 配置图片：可从 `src/assets/` 导入或使用 `public/` 目录
 
-### Images
-
-The theme uses a `CustomImage` component that automatically displays images using Astro’s optimized `<Image />` or a standard `<img>` tag depending on the source.
-
-- Content collection images (used in posts or pages) must be stored in `src/assets/` since they use Astro’s `image()` schema.
-- Site-config images (like the logo, hero background, or social preview) can either be imported from `src/assets/` for optimization or referenced directly from `public/` (e.g. /logo.svg) if you prefer not to optimize them.
-
-The `public/` directory can still be used for static files like favicons, fonts, or robots.txt.
-
-## 🚀 Project Structure
-
-Inside of Ovidius Astro theme, you'll see the following folders and files:
+## 项目结构
 
 ```text
 ├── public/
 ├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── data/
-│   ├── layouts/
-│   ├── pages/
-│   ├── styles/
-│   ├── utils/
-│   ├── content.config.ts
-│   └── types.ts
+│   ├── assets/
+│   ├── components/
+│   ├── content/
+│   │   ├── blog/      # 博客文章
+│   │   └── pages/     # 静态页面
+│   ├── data/
+│   ├── layouts/
+│   ├── pages/
+│   ├── styles/
+│   ├── utils/
+│   ├── content.config.ts
+│   └── types.ts
 ├── astro.config.mjs
-├── README.md
 ├── package.json
 └── tsconfig.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 命令
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro (`.astro`) components.
+| 命令                   | 说明                                    |
+| :--------------------- | :-------------------------------------- |
+| `npm install`          | 安装依赖                                |
+| `npm run dev`          | 启动开发服务器 (`localhost:4321`)      |
+| `npm run build`        | 构建生产版本 (`dist/client/`)          |
+| `npm run preview`      | 本地预览构建结果                        |
+| `npm run astro ...`    | 运行 Astro CLI 命令                     |
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+## 部署
 
-## Astro.js Commands
+### Cloudflare Pages (推荐)
 
-All commands are run from the root of the project, from a terminal:
+```bash
+# 安装 Wrangler CLI
+npm install -g wrangler
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+# 部署
+wrangler pages deploy dist/client/
+```
 
-## Want to learn more about Astro.js?
+### Git 集成
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credits
-
-- Demo content generate with [Chat GPT](https://chat.openai.com/)
-- Images for demo content from [Unsplash](https://unsplash.com/)
-
-## Astro Themes by Just Good UI
-
-- [Dante](https://github.com/JustGoodUI/dante-astro-theme) is a free single-author blog and portfolio theme.
+在 GitHub 仓库设置 Cloudflare Pages，连接到 `main` 分支。
 
 ## License
 
-Licensed under the [GPL-3.0](https://github.com/JustGoodUI/ovidius-astro-theme/blob/main/LICENSE) license.
+基于 [GPL-3.0](LICENSE) 许可证。
