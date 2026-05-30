@@ -83,7 +83,7 @@ const siteConfig: SiteConfig = {
         }
     ],
     hero: {
-        title: '你好!',
+        title: '你好！',
         text: "我是 Jack Liang，一个 ABAP 开发者。很高兴能认识你。",
         avatar: {
             src: heroAvatar,
