@@ -6,12 +6,12 @@ tags:
   - 远程工作
   - 工作与生活平衡
 featureImage:
-  src: '../../assets/images/post-3.jpg'
+  src: 'https://img.jack-liang.com/00-headImage/post-3.jpg'
   alt: Flat screen computer monitor on wooden desk
   caption: My working space
 seo:
   image:
-    src: '../../assets/images/post-3.jpg'
+    src: 'https://img.jack-liang.com/00-headImage/post-3.jpg' 
 ---
 
 近年来，我们的工作方式发生了重大转变，这主要得益于技术的进步以及人们对工作与生活平衡态度的转变。其中最显著的变化之一就是远程工作的兴起，让员工能够在家中舒适地工作。虽然这种转变带来了许多好处，但也带来了不少挑战。让我们来探讨一下在家工作的优缺点。

@@ -7,12 +7,12 @@ tags:
   - Web开发
   - 技术演进
 featureImage:
-  src: '../../assets/images/post-9.jpg'
+  src: 'https://img.jack-liang.com/00-headImage/post-9.jpg'
   alt: Blue shapes
   caption: Abstract blue shapes
 seo:
   image:
-    src: '../../assets/images/post-9.jpg'
+    src: 'https://img.jack-liang.com/00-headImage/post-9.jpg'
 ---
 
 自万维网诞生以来，前端开发经历了漫长的发展历程。从静态 HTML 页面到动态交互式 Web 应用，前端开发的演变可谓令人惊叹。在本文中，我们将踏上一段穿越时空的奇妙旅程，探索前端开发多年来的演进历程。

@@ -7,12 +7,12 @@ tags:
   - 框架选择
   - Web开发
 featureImage:
-  src: '../../assets/images/post-5.jpg'
+  src: 'https://img.jack-liang.com/00-headImage/post-5.jpg'
   alt: Stairs
   caption: 从底层仰望灯塔的楼梯
 seo:
   image:
-    src: '../../assets/images/post-5.jpg'
+    src: 'https://img.jack-liang.com/00-headImage/post-5.jpg' 
 ---
 
 **为您的 Web 项目选择合适的框架**是一个关键决策，它会对开发过程和项目的成功产生重大影响。由于可选方案众多，在做出选择之前，必须考虑各种因素。以下是为您的 Web 项目选择合适框架的逐步指南。
@@ -37,7 +37,7 @@ seo:
 
 框架社区和生态系统的活力与实力是做出选择时的首要考虑因素。一个繁荣的社区意味着该框架正在被全球开发者积极使用和支持。以下是这之所以重要的原因。
 
-![社区与生态系统](../../assets/images/post-5-1.jpg)
+![社区与生态系统](https://img.jack-liang.com/00-headImage/post-5-1.jpg)
 
 > 好的代码本身就是最好的文档。当你准备添加注释时，问问自己："如何改进代码，使其不需要这个注释？" —— **Steve McConnell**
 

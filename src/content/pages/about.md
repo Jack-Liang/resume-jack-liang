@@ -1,13 +1,13 @@
 ---
 title: 关于我
 featureImage:
-  src: '../../assets/images/about.jpeg'
+  src: 'https://img.jack-liang.com/00-headImage/about.jpeg'
   alt: The portrait of a person
 seo:
   title: 关于我 - 个人简介
   description: 关于我个人背景、技能和经历的详细介绍页面
   image:
-    src: '../../assets/images/about.jpeg'
+    src: 'https://img.jack-liang.com/00-headImage/about.jpeg' 
 ---
 
 Hi，我是 Jack Liang， 一位 ABAP 开发人员，现居中国上海。

@@ -63,14 +63,13 @@ const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
             <a
                 id="more-tags-btn"
                 href="/blog/tag"
-                class="hidden pt-8 mb-16 text-base font-medium text-primary hover:underline border-t border-slate-200"
-                style="margin-bottom: 4rem;"
+                class="hidden pt-4 mb-8 text-base font-medium text-primary hover:underline border-t border-slate-200"
             >
                 更多标签 &rarr;
             </a>
 
             <!-- Posts Container -->
-            <div id="posts-container" class="posts-list" style="padding-top: 2rem;">
+            <div id="posts-container" class="posts-list">
                 {allPosts.map((post) => (
                     <div class="post-item" data-tags={JSON.stringify(post.data.tags ?? [])}>
                         <PostPreview post={post} />

@@ -7,12 +7,12 @@ tags:
   - ABAP
   - 知乎专栏
 featureImage:
-  src: '../../assets/images/post-5.jpg'
+  src: 'https://img.jack-liang.com/00-headImage/post-5.jpg'
   alt: Stairs
   caption: 从底层仰望灯塔的楼梯
 seo:
   image:
-    src: '../../assets/images/post-5.jpg'
+    src: 'https://img.jack-liang.com/00-headImage/post-5.jpg' 
 ---
 
 知乎有一个 **[SAP ABAP](https://www.zhihu.com/column/c_1553466158648614912)** 专栏，专注于分享 SAP 开发技巧和翻译 SAP 技术文档。

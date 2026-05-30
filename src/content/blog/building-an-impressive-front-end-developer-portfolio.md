@@ -7,11 +7,11 @@ tags:
   - 作品集
   - 职业发展
 featureImage:
-  src: '../../assets/images/post-8.jpg'
+  src: 'https://img.jack-liang.com/00-headImage/post-8.jpg'
   alt: Golden and blue geometrical shapes
 seo:
   image:
-    src: '../../assets/images/post-8.jpg'
+    src: 'https://img.jack-liang.com/00-headImage/post-8.jpg' 
     alt: Golden and blue geometrical shapes
 ---
 
