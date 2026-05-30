@@ -1,7 +1,7 @@
 ---
 title: 00-ABAP Cheat Sheets 项目介绍
 excerpt: 这是 SAP 官方开源的 ABAP 速查表项目，面向 ABAP 开发者（包括初学者和有经验的工程师），旨在提供简洁、易查阅的 ABAP 核心语法、常用功能和最佳实践参考，降低 ABAP 开发的学习和查阅成本。
-publishDate: 'May 20 2026'
+publishDate: 'May 19 2026'
 tags:
   - SAP
   - ABAP
