@@ -2,6 +2,10 @@
 title: 终极前端开发者职业路线图
 excerpt: 你是否对开启一份有回报的前端开发职业生涯感兴趣，或者希望在这个充满活力的领域中提升现有技能？前端开发是科技行业中一个令人兴奋且不断发展的领域，要想取得成功，拥有一份清晰的路线图至关重要。
 publishDate: 'Nov 18 2024'
+tags:
+  - 前端开发
+  - 职业发展
+  - 路线图
 featureImage:
   src: '../../assets/images/post-6.jpg'
   alt: Circles

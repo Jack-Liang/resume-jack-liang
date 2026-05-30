@@ -2,6 +2,10 @@
 title: ABAP 开发者路线图
 excerpt: 分享一个 ABAP 开发者的路线图，帮助你快速上手 ABAP 开发。
 publishDate: 'Mar 8 2026'
+tags:
+  - SAP
+  - ABAP
+  - Roadmap
 featureImage:
   src: '../../assets/images/post-9.jpg'
   alt: 头图

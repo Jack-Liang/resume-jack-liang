@@ -2,6 +2,10 @@
 title: 知乎专栏 | SAP ABAP 开发历史文章
 excerpt: 汇总我在知乎专栏发布的 SAP ABAP 开发技巧和技术交流文章
 publishDate: 'May 8 2026'
+tags:
+  - SAP
+  - ABAP
+  - 知乎专栏
 featureImage:
   src: '../../assets/images/post-5.jpg'
   alt: Stairs

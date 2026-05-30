@@ -2,6 +2,10 @@
 title: SAP Fiori应用参考库及Fiori 激活任务列表
 excerpt: 本次课程讲解SAP Fiori的生态工具与实施配置方法，介绍了应用库规模、参考库功能、应用推荐分析流程，演示了参考库操作、维护规划器用法与任务列表激活流程，帮助学习者掌握Fiori项目实施步骤。
 publishDate: 'May 19 2026'
+tags:
+  - SAP
+  - Fiori
+  - SAP S4HANA
 featureImage:
   src: 'https://img.jack-liang.com/sap-fiori-apps-and-task-list/fiori-apps-library.png'
   alt: 头图

@@ -2,6 +2,10 @@
 title: 构建一个印象深刻的前端开发人员组合集
 excerpt: 前端开发人员组合集是展示您的技能、留下持久印象并推进您的职业生涯的门票。您的组合集是您的数字商务名片，它应该反映您的才华、创造力和专业知识。
 publishDate: 'Jun 10 2025'
+tags:
+  - 前端开发
+  - 作品集
+  - 职业发展
 featureImage:
   src: '../../assets/images/post-8.jpg'
   alt: Golden and blue geometrical shapes

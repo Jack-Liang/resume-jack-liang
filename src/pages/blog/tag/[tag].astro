@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostPreview from '../../../components/PostPreview.astro';
+import { sortPostsByDateDesc } from '../../../utils/post-utils';
+
+export async function getStaticPaths() {
+    const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
+    const allTags = [...new Set(posts.flatMap((post) => post.data.tags ?? []))];
+
+    return allTags.map((tag) => ({
+        params: { tag },
+        props: {
+            tag,
+            posts: posts
+                .filter((post) => post.data.tags?.includes(tag))
+                .sort(sortPostsByDateDesc)
+        }
+    }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout title={`标签: ${tag}`} description={`所有包含 "${tag}" 标签的文章`}>
+    <main class="px-4 py-12 grow sm:px-8 sm:py-16">
+        <div class="max-w-3xl mx-auto">
+            <header class="mb-12 sm:mb-16">
+                <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl">
+                    标签: <span class="text-primary">{tag}</span>
+                </h1>
+                <p class="mt-2 text-slate-500">
+                    共 {posts.length} 篇文章
+                </p>
+            </header>
+            <div class="space-y-12 sm:space-y-16">
+                {posts.map((post) => <PostPreview post={post} />)}
+            </div>
+        </div>
+    </main>
+</BaseLayout>

@@ -2,6 +2,10 @@
 title: 解决 SAP 使用 GUI_UPLOAD 上传 txt 文件乱码问题
 excerpt: 在使用 SAP 的标准 Function GUI_UPLOAD 上传包含中文的 txt 文档时，遇到了乱码问题，解决的关键在于正确设置编码参数。
 publishDate: 'March 30 2025'
+tags:
+  - SAP
+  - ABAP
+  - 乱码问题
 featureImage:
   src: 'https://img.jack-liang.com/garbled-text/p0.webp'
   alt: 头图

@@ -2,6 +2,10 @@
 title: 深度思考不是三个习惯，是一个校准回路
 excerpt: 通过量化、回顾、联想三个简单习惯，能系统性提升思维的细致度、有序性和洞察力，最终实现大脑预测模型的优化与心智成长。
 publishDate: 'May 30 2026'
+tags:
+  - 深度思考
+  - 认知提升
+  - 方法论
 featureImage:
   src: 'https://img.jack-liang.com/00-headImage/Deep%20Thinking%20Is%20a%20Calibration%20Loop.png'
   alt: Sun and sea waves

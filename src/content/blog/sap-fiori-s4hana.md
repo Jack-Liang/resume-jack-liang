@@ -2,6 +2,10 @@
 title: 从零开始学习 SAP Fiori 的实施与配置，轻松为 SAP S/4HANA 部署 Fiori 应用！
 excerpt: 主要讲解SAP Fiori的实施和配置，从基础知识到如何顺利部署Fiori应用程序，涵盖了SAP S/4HANA的核心概念、设计原则、不同的部署选项、用户角色管理、安全机制等多方面内容。
 publishDate: 'May 18 2026'
+tags:
+  - SAP
+  - Fiori
+  - SAP S4HANA
 featureImage:
   src: 'https://img.jack-liang.com/sap-fiori-s4hana/sap-fiori-s4hana.jpg'
   alt: 头图

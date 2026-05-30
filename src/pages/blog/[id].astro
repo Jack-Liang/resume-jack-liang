@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 
 const { href } = Astro.url;
 const { post, prevPost, nextPost } = Astro.props as { post: CollectionEntry<'blog'>; prevPost: CollectionEntry<'blog'>; nextPost: CollectionEntry<'blog'> };
-const { title, publishDate, updatedDate, featureImage, excerpt, isFeatured, seo } = post.data;
+const { title, publishDate, updatedDate, featureImage, excerpt, isFeatured, tags, seo } = post.data;
 const { Content } = await render(post);
 ---
 
@@ -52,6 +52,20 @@ const { Content } = await render(post);
                     }
                 </div>
                 <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">{title}</h1>
+                {
+                    tags && tags.length > 0 && (
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            {tags.map((tag) => (
+                                <a
+                                    href={`/blog/tag/${tag}`}
+                                    class="px-2 py-1 text-xs font-medium rounded-full bg-slate-100 text-slate-600 hover:bg-primary hover:text-white transition-colors"
+                                >
+                                    {tag}
+                                </a>
+                            ))}
+                        </div>
+                    )
+                }
             </header>
             {
                 featureImage?.src && (

@@ -2,6 +2,10 @@
 title: 前端开发者的沟通与协作
 excerpt: 前端开发不仅仅是编写代码，更是与他人无缝合作，创造卓越用户体验的过程。在当今动态且相互依存的科技行业中，有效的沟通与协作是前端开发者取得成功的必备技能。
 publishDate: 'Dec 23 2023'
+tags:
+  - 软技能
+  - 团队协作
+  - 沟通技巧
 featureImage:
   src: '../../assets/images/post-2.jpg'
   alt: Sun and sea waves

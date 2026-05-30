@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+    const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
+    const tagCounts = new Map<string, number>();
+
+    posts.forEach((post) => {
+        (post.data.tags ?? []).forEach((tag) => {
+            tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+        });
+    });
+
+    const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
+
+    return [{ params: {}, props: { tags: sortedTags } }];
+}
+
+const { tags } = Astro.props as { tags: [string, number][] };
+---
+
+<BaseLayout title="标签" description="浏览所有文章标签">
+    <main class="px-4 py-12 grow sm:px-8 sm:py-16">
+        <div class="max-w-3xl mx-auto">
+            <header class="mb-12 sm:mb-16">
+                <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl">标签</h1>
+                <p class="mt-2 text-slate-500">
+                    共 {tags?.length ?? 0} 个标签
+                </p>
+            </header>
+            <div class="flex flex-wrap gap-3">
+                {tags && tags.map(([tag, count]) => (
+                    <a
+                        href={`/blog/tag/${tag}`}
+                        class="px-4 py-2 text-sm font-medium rounded-full bg-slate-100 text-slate-600 hover:bg-primary hover:text-white transition-colors"
+                    >
+                        {tag} <span class="ml-1 text-xs opacity-60">({count})</span>
+                    </a>
+                ))}
+            </div>
+        </div>
+    </main>
+</BaseLayout>

@@ -2,6 +2,10 @@
 title: '前端开发的演进：穿越时空的旅程'
 excerpt: 为您的 Web 项目选择合适的框架是一个关键决策，它可能显著影响开发过程和项目的成功。面对众多可用选项，在做出选择之前考虑各种因素至关重要。
 publishDate: 'Oct 12 2025'
+tags:
+  - 前端开发
+  - Web开发
+  - 技术演进
 featureImage:
   src: '../../assets/images/post-9.jpg'
   alt: Blue shapes

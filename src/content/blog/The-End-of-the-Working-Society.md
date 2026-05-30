@@ -2,6 +2,10 @@
 title: 当工作不再是答案，你是谁？当代人的迷茫
 excerpt: 分享一个关于工作社会的思考，帮助你理解当前社会的趋势。工作社会的终结，是否意味着我们的未来？我们是否需要重新思考自己的价值和身份？
 publishDate: 'Apr 20 2026'
+tags:
+  - 工作社会
+  - 职业思考
+  - 未来趋势
 featureImage:
   src: 'https://img.jack-liang.com/The-End-of-the-Working-Society/image0.jpg'
   alt: 头图

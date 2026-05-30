@@ -2,6 +2,10 @@
 title: 框架选择成功路线图
 excerpt: 为您的 Web 项目选择合适的框架是一个关键决策，它会对开发过程和项目的成功产生重大影响。由于可选方案众多，在做出选择之前，必须考虑各种因素。
 publishDate: 'Sep 15 2025'
+tags:
+  - 前端开发
+  - 框架选择
+  - Web开发
 featureImage:
   src: '../../assets/images/post-5.jpg'
   alt: Stairs
