@@ -4,11 +4,15 @@ import tailwindcss from '@tailwindcss/vite';
 import pagefind from 'astro-pagefind';
 import { defineConfig } from 'astro/config';
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
     site: 'https://jack-liang.com',
+
     vite: {
         plugins: [tailwindcss()]
     },
+
     integrations: [
         mdx(),
         sitemap(),
@@ -17,5 +21,7 @@ export default defineConfig({
                 excludeSelectors: ['[data-pagefind-ignore]', '[data-pagefind-ignore] *']
             }
         })
-    ]
+    ],
+
+    adapter: cloudflare()
 });
