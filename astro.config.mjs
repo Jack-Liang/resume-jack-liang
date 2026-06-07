@@ -8,11 +8,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
     site: 'https://jack-liang.com',
     output: 'static',
-    adapter: cloudflare({
-        platformProxy: {
-            enabled: true
-        }
-    }),
+    adapter: cloudflare(),
     vite: {
         plugins: [tailwindcss()]
     },
