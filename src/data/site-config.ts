@@ -1,7 +1,4 @@
-import heroAvatar from '../assets/images/avatar.jpg';
-import heroBackground from '../assets/images/hero.webp';
 import logoUrl from '../assets/images/logo.svg?url';
-import defaultSocial from '../assets/images/ovidius-preview.jpg';
 import type { SiteConfig } from '../types';
 
 const siteConfig: SiteConfig = {
@@ -12,7 +9,7 @@ const siteConfig: SiteConfig = {
     title: 'Jack-Liang',
     description: 'Jack Liang 的个人网站',
     image: {
-        src: defaultSocial,
+        src: 'https://img.jack-liang.com/00-headImage/avatar.jpg',
         alt: 'Jack Liang - 个人社交媒体链接'
     },
     primaryNavLinks: [
@@ -86,11 +83,11 @@ const siteConfig: SiteConfig = {
         title: '你好！',
         text: "我是 Jack Liang，一个 ABAP 开发者。很高兴能认识你。",
         avatar: {
-            src: heroAvatar,
+            src: 'https://img.jack-liang.com/00-headImage/avatar.jpg',
             alt: 'Jack-Liang'
         },
         backgroundImage: {
-            src: heroBackground
+            src: 'https://img.jack-liang.com/00-headImage/hero.webp'
         }
     },
     subscribe: {
