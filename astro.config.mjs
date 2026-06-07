@@ -12,13 +12,20 @@ export default defineConfig({
     vite: {
         plugins: [tailwindcss()]
     },
-    integrations: [
+    integrations: [import heroAvatar from '../assets/images/avatar.jpg';
+
+    hero: {
+        avatar: {
+            src: heroAvatar,
+            alt: 'Jack-Liang'
+        }
+    }
         mdx(),
-        sitemap(),
-        pagefind({
-            indexConfig: {
-                excludeSelectors: ['[data-pagefind-ignore]', '[data-pagefind-ignore] *']
-            }
+    sitemap(),
+    pagefind({
+        indexConfig: {
+            excludeSelectors: ['[data-pagefind-ignore]', '[data-pagefind-ignore] *']
+}
         })
     ]
 });
