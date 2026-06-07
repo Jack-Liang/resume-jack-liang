@@ -7,25 +7,18 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
     site: 'https://jack-liang.com',
-    output: 'hybrid',
+    output: 'static',
     adapter: cloudflare(),
     vite: {
         plugins: [tailwindcss()]
     },
-    integrations: [import heroAvatar from '../assets/images/avatar.jpg';
-
-    hero: {
-        avatar: {
-            src: heroAvatar,
-            alt: 'Jack-Liang'
-        }
-    }
+    integrations: [
         mdx(),
-    sitemap(),
-    pagefind({
-        indexConfig: {
-            excludeSelectors: ['[data-pagefind-ignore]', '[data-pagefind-ignore] *']
-}
+        sitemap(),
+        pagefind({
+            indexConfig: {
+                excludeSelectors: ['[data-pagefind-ignore]', '[data-pagefind-ignore] *']
+            }
         })
     ]
 });
