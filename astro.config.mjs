@@ -9,16 +9,8 @@ export default defineConfig({
     site: 'https://jack-liang.com',
     output: 'static',
     adapter: cloudflare({
-        imageService: 'compile',
-        platformProxy: {
-            enabled: true
-        }
+        imageService: 'passthrough'
     }),
-    image: {
-        service: {
-            entrypoint: 'astro/assets/services/sharp'
-        }
-    },
     vite: {
         plugins: [tailwindcss()]
     },
