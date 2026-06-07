@@ -13,71 +13,20 @@ const siteConfig: SiteConfig = {
         alt: 'Jack Liang - 个人社交媒体链接'
     },
     primaryNavLinks: [
-        {
-            text: '首页',
-            href: '/'
-        },
-        {
-            text: '文章',
-            href: '/blog'
-        },
-        {
-            text: '关于我',
-            href: '/about'
-        },
-        {
-            text: '和我联系',
-            href: '/contact'
-        },
-        // {
-        //     text: 'Download Theme',
-        //     href: 'https://github.com/JustGoodUI/ovidius-astro-theme'
-        // }
+        { text: '首页', href: '/' },
+        { text: '文章', href: '/blog' },
+        { text: '关于我', href: '/about' },
+        { text: '和我联系', href: '/contact' }
     ],
     secondaryNavLinks: [
-        {
-            text: '关于我',
-            href: '/about'
-        },
-        {
-            text: '服务条款',
-            href: '/terms'
-        },
-        {
-            text: '和我联系',
-            href: '/contact'
-        },
-        // {
-        //     text: '下载主题',
-        //     href: 'https://github.com/JustGoodUI/ovidius-astro-theme'
-        // }
+        { text: '关于我', href: '/about' },
+        { text: '服务条款', href: '/terms' },
+        { text: '和我联系', href: '/contact' }
     ],
     socialLinks: [
-        {
-            text: 'GitHub 主页',
-            href: 'https://github.com/Jack-Liang',
-            icon: 'github'
-        },
-        {
-            text: '知乎专栏',
-            href: 'https://www.zhihu.com/column/c_1553466158648614912',
-            icon: 'zhihu'
-        },
-        // {
-        //     text: '关注 Instagram',
-        //     href: 'https://instagram.com/',
-        //     icon: 'instagram'
-        // },
-        // {
-        //     text: '关注 Bluesky',
-        //     href: 'https://bsky.app/profile/justgoodui.com',
-        //     icon: 'bluesky'
-        // },
-        {
-            text: '关注 Bilibili',
-            href: 'https://space.bilibili.com/26855033',
-            icon: 'bilibili'
-        }
+        { text: 'GitHub 主页', href: 'https://github.com/Jack-Liang', icon: 'github' },
+        { text: '知乎专栏', href: 'https://www.zhihu.com/column/c_1553466158648614912', icon: 'zhihu' },
+        { text: '关注 Bilibili', href: 'https://space.bilibili.com/26855033', icon: 'bilibili' }
     ],
     hero: {
         title: '你好！',

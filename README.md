@@ -2,25 +2,22 @@
 
 基于 [Ovidius](https://justgoodui.com/astro-themes/ovidius/) 主题修改的个人博客，使用 Astro.js 和 Tailwind CSS 构建。
 
-![Preview](public/ovidius-preview.jpg)
-
 ## 主题特性
 
-- ✅ 精选文章支持
-- ✅ 订阅表单 (Mailchimp)
-- ✅ Tailwind CSS
-- ✅ SEO 优化 (canonical URLs, OpenGraph)
-- ✅ 站点地图
-- ✅ RSS 订阅
-- ✅ Markdown & MDX 支持
-- ✅ 图片优化 (Astro Image)
-- ✅ 标签筛选与排序
-- ✅ 站内搜索 (Pagefind)
-- ✅ Cloudflare Pages 部署
+- 精选文章支持
+- 订阅表单 (Mailchimp)
+- Tailwind CSS
+- SEO 优化 (canonical URLs, OpenGraph)
+- 站点地图
+- RSS 订阅
+- Markdown & MDX 支持
+- 标签筛选与排序
+- 站内搜索 (Pagefind)
+- Cloudflare Pages 部署
 
 ## 集成包
 
-- `@astrojs/tailwind` - Tailwind CSS 集成
+- `@tailwindcss/vite` - Tailwind CSS集成
 - `@astrojs/sitemap` - 站点地图生成
 - `@astrojs/mdx` - MDX 支持
 - `@astrojs/rss` - RSS 订阅
@@ -51,8 +48,8 @@ export default defineConfig({
 
 ### 图片
 
-- 内容图片：放在 `src/assets/`
-- 配置图片：可从 `src/assets/` 导入或使用 `public/` 目录
+-站点图片使用外部 CDN (`https://img.jack-liang.com/`)
+- 本地静态资源放在 `public/` 目录
 
 ## 项目结构
 
@@ -73,6 +70,7 @@ export default defineConfig({
 │   └── types.ts
 ├── astro.config.mjs
 ├── package.json
+├── wrangler.toml
 └── tsconfig.json
 ```
 
@@ -88,19 +86,13 @@ export default defineConfig({
 
 ## 部署
 
-### Cloudflare Pages (推荐)
+项目通过 Git 集成自动部署到 Cloudflare Pages。提交到 `main` 分支后，Cloudflare 会自动拉取代码并部署。
+
+### 本地构建
 
 ```bash
-# 安装 Wrangler CLI
-npm install -g wrangler
-
-# 部署
-wrangler pages deploy dist/client/
+npm run build # 构建到 dist/client/
 ```
-
-### Git 集成
-
-在 GitHub 仓库设置 Cloudflare Pages，连接到 `main` 分支。
 
 ## License
 

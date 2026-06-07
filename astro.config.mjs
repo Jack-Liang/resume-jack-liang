@@ -8,14 +8,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
     site: 'https://jack-liang.com',
     output: 'static',
-    adapter: cloudflare({
-        imageService: 'none'
-    }),
-    image: {
-        service: {
-            entrypoint: 'astro/assets/services/sharp'
-        }
-    },
+    adapter: cloudflare(),
     vite: {
         plugins: [tailwindcss()]
     },
