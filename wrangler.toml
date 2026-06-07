@@ -1,9 +1,6 @@
 name = "resume-jack-liang"
 compatibility_date = "2024-01-01"
-main = "./dist/server/entry.mjs"
 
-# 使用你已经存在的 SESSION KV namespace
-# 需要在 Cloudflare Dashboard 获取实际的 namespace ID 并替换下方
 [[kv_namespaces]]
 binding = "SESSION"
 id = "3e73f1325a8548799b553f62acadc8ff"
