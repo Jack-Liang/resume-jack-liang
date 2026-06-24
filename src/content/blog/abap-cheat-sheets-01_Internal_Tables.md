@@ -21,7 +21,7 @@ seo:
 ---
 
 - [简介](#简介)
-  - [内表的基本属性](#basic-properties-of-internal-tables)
+  - [内表的基本属性](#内表的基本属性)
   - [内表的键值](#table-keys-primary-secondary-standard-empty-and-table-indexes)
 - [创建内表和类型](#creating-internal-tables-and-types)
   - [指定内表键值](#specifying-keys-in-internal-table-declarations)
@@ -104,13 +104,64 @@ seo:
 - 是在 ABAP 工作内存中临时存储可变数据（即任意行数、固定结构的表行）的表。
 - 是[动态数据对象](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abendynamic_data_object_glosry.htm)，即内存消耗之外的所有属性均由[数据类型](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abendata_type_glosry.htm)静态确定。
 - 由同一数据类型组成的可变行序列。
-- 其数据类型为表类型（一种复杂数据类型），该类型定义了以下属性：
+- 其数据类型为[表类型](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abentable_type_glosry.htm)（一种[复杂数据类型](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abencomplex_data_type_glosry.htm)），该类型定义了以下属性：
+  - [行类型](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abenrow_type_glosry.htm)
+  - [表类别](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abentable_category_glosry.htm)
+  - [表键](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abentable_key_glosry.htm)
+- 当需要以结构化方式处理任意数据类型的可变数据集时使用，例如，在 [ABAP 程序](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abenabap_program_glosry.htm)中存储和处理[数据库表](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abendatabase_table_glosry.htm)内容。
+- 允许通过[表索引](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abentable_index_glosry.htm)或[表键](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abentable_key_glosry.htm)访问单个表行。
+
+<p align="right"><a href="#top">⬆️ 回到顶部</a></p>
+
+### 内表的基本属性
+
+<details>
+  <summary>🟢 点击展开查看更多详情</summary>
+  <!-- -->
+
+**行类型**
+
+- 定义内部表中每一行的结构，即描述该表包含哪些列。
+- 可以是任意 ABAP 数据类型，例如[基础数据类型](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abenelementary_data_type_glosry.htm)、复合数据类型，也可以是[引用类型](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abenreference_type_glosry.htm)。
+- 多数情况下，行类型采用[结构化类型](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abenstructured_type_glosry.htm)。此时，每行的独立组件也被称为内部表中的列。
+- 简单情况下，行由包含基础数据对象的[扁平结构](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abenflat_structure_glosry.htm)组成；但也可以采用[深度结构](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abendeep_structure_glosry.htm)，其组件既可以是结构体，也可以是内部表。
+
+**表类别**
+
+- 定义内部表的管理和存储方式，以及如何访问单个表条目。
+- 为何重要？选用合适的表类别应能满足您的需求，即当内部表数据量较大时，不同类别在访问表内容时可能存在显著的性能差异。
+- 注意：访问内部表有两种方式：
+  - 通过表索引访问：通过行号访问内表的某一行。这种访问方式是访问表行的最快方式。
+  - 通过表键访问：通过在特定列中搜索特定值来访问内表的某一行。注意：搜索的列可以是键列，也可以是非键列。
+
+| 类别 | 由内部管理 | 访问 | 主表键 | 使用时机 | 提示 |
+|---|---|---|---|---|---|
+| `STANDARD` |表索引（这也是这类表被称为[索引表](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abenindex_table_glosry.htm)的原因）|<ul><li>表索引</li><li>表键</li></ul>|<ul><li>始终为非唯一键，即始终允许存在重复条目</li><li>若键不相关，可定义空键(`WITH EMPTY KEY`)</li></ul>|<ul><li>主要场景：通过顺序处理或表索引访问表内容时。</li><li>使用主键访问表的响应时间：此类表访问仅针对排序表和哈希表进行了优化。对于标准表，主键访问会遍历所有表行进行线性搜索。这意味着当主要通过表键访问表时，包含超过 100 行的标准表并非理想选择。</li></ul>|<ul><li>无特定排序规则，但可使用 `SORT` 对表进行排序</li><li>填充此类表格：行要么追加到表格末尾，要么插入到特定位置。</li><li>可以定义[辅助表键](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abensecondary_table_key_glosry.htm)，以提高对标准表进行键访问的效率。</li><li>标准表和排序表的[管理开销最小（参见 ABAP 标准 F1 文档）](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/index.htm?file=abenadmin_costs_dyn_mem_obj_guidl.htm)。 </li></ul>|
+|`SORTED`|主表索引（这就是为什么这些表被称为[索引表](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abenindex_table_glosry.htm)的原因）。|<ul><li>表索引</li><li>表键</li></ul>|<ul><li>非唯一</li><li>唯一</li><br>... 用于按升序对表进行排序。</ul>|<ul><li>通过表键和索引实现对表内容的优化访问。</li><li>如果通过表键访问是主要访问方式，但无法定义唯一键。</li></ul>|<ul><li>在插入或删除行时会自动进行排序。因此，表的索引通常需要进行重组。 </li><li>使用主键访问表的响应时间取决于表条目数的对数，因为采用了二分查找算法。</li><li>标准表和排序表的管理开销最低。</li></ul>|
+|`HASHED`|哈希算法 |<ul><li>表键</li><li>[二级表索引](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abensecondary_table_index_glosry.htm)</li></ul>|始终唯一|<ul><li>适用于大型内部表。</li><li>针对键访问进行了优化。通过表键访问表内容是主要的访问方式，可以定义唯一键。</li></ul>|<ul><li>主键访问的响应时间是恒定的，且与表中的条目数量无关。</li><li>哈希表的管理开销最高。</li></ul>|
 
 
+**关键属性** 
 
+- 表键有两种类型：[主表键](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abenprimary_table_key_glosry.htm) 和 [辅助表键](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abensecondary_table_key_glosry.htm)。
+- 表键...
+  - 旨在提供对内部表内容的优化访问。
+  - 键可以是唯一或非唯一的，即内部表中可以存在或不存在具有相同键的多行（重复行）。对于主表键，其定义取决于表类别。对于辅表键，其定义取决于键类型。对于标准表，主表键也可以定义为空，即不包含任何键列。请注意，对于标准表，只有使用辅表键才能实现优化访问。
+ -  键的类型： 
+   - 排序键：
+     - 可以是排序表的主表键，也可以是任何表的次表键。
+     - 在内部通过表索引进行管理。对于排序表，这是主表索引。对于次表键，则会额外添加一个次表索引。
+     - 通过排序键进行访问意味着采用优化的二分查找。
+   - 哈希键：
+     - 可以是哈希表的主表键，也可以是任何表的辅助表键。
+     - 内部通过哈希算法进行管理。 
+     - 哈希键没有表索引。
 
+**更多信息**
+- [内表 - 概述](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/index.htm?file=abenitab_oview.htm)
+- [内表 F1 文档（ ABAP 标准）](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/index.htm?file=abenadmin_costs_dyn_mem_obj_guidl.htm)
+</details>
+
+<p align="right"><a href="#top">⬆️ 回到顶部</a></p>
 
 ## 持续更新中……
-
-
-<p align="right"><a href="#top">⬆️ back to top</a></p>
