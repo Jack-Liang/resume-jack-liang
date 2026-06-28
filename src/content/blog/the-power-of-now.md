@@ -7,11 +7,11 @@ tags:
   - 读书笔记
   - 心理学
 featureImage:
-  src: 'https://img.jack-liang.com/the-power-of-now/01.jpg'
+  src: 'https://img.jack-liang.com/the-power-of-now/Image_00004_.jpg'
   alt: '头图'
 seo:
   image: 
-    src: 'https://img.jack-liang.com/the-power-of-now/01.jpg'
+    src: 'https://img.jack-liang.com/the-power-of-now/Image_00004_.jpg'
 ---
 
 我读《当下的力量》的时候，有一句话把我点醒了：
