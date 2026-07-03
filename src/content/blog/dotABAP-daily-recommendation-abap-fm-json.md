@@ -7,11 +7,11 @@ tags:
   - ABAP
   - dotABAP
 featureImage:
-  src: 'https://img.jack-liang.com/dotabap/abap_fm_json.png'
+  src: 'https://images.pexels.com/photos/28602566/pexels-photo-28602566.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
   alt: abap_fm_json
 seo:
   image:
-    src: 'https://img.jack-liang.com/dotabap/abap_fm_json.png'
+    src: 'https://images.pexels.com/photos/28602566/pexels-photo-28602566.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
 ---
 
 ## 项目基本信息
