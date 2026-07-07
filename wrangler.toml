@@ -1,5 +1,8 @@
-name = "resume-jack-liang"
+name = 'jack-liang'
 compatibility_date = "2026-06-01"
+
+[assets]
+directory = "./dist"
 
 [[kv_namespaces]]
 binding = "SESSION"
