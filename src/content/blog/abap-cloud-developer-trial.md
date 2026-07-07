@@ -1,5 +1,5 @@
 ---
-title: 在 Docker 中运行属于自己的 SAP 系统
+title: 能跑在笔记本中的 SAP 系统
 excerpt: SAP 官方推出了 Docker 版本的系统，提供给 ABAP 开发者使用，硬件要求也不高，本文讲解使用方法和注意事项。
 publishDate: 'Mar 25 2025'
 tags:
