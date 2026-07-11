@@ -12,7 +12,6 @@ featureImage:
 seo:
   image:
     src: 'https://img.jack-liang.com/abap-cloud-developer-trial/p0.png'
-isFeatured: true
 ---
 本文首发于 [Jack-L的知乎专栏](https://zhuanlan.zhihu.com/p/1887893267435193692)
 

@@ -28,11 +28,11 @@ const { title, publishDate, updatedDate, featureImage, excerpt } = post.data;
     </header>
     {
         featureImage?.src && (
-            <figure class="max-w-6xl mx-auto my-6 sm:my-8">
+            <figure class="max-w-6xl mx-auto my-6 sm:my-8" style="aspect-ratio: 21/9;">
                 <a href={`/blog/${post.id}/`}>
                     <CustomImage
                         {...featureImage}
-                        class="w-full rounded-md"
+                        class="w-full h-full object-cover rounded-md"
                         widths={[480, 640, 768, 960, 1200, 1600]}
                         sizes="(min-width: 1216px) 1152px, calc(100vw - 32px)"
                         fetchpriority="high"

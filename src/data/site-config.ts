@@ -26,7 +26,8 @@ const siteConfig: SiteConfig = {
     socialLinks: [
         { text: 'GitHub 主页', href: 'https://github.com/Jack-Liang', icon: 'github' },
         { text: '知乎专栏', href: 'https://www.zhihu.com/column/c_1553466158648614912', icon: 'zhihu' },
-        { text: '关注 Bilibili', href: 'https://space.bilibili.com/26855033', icon: 'bilibili' }
+        { text: '关注 Bilibili', href: 'https://space.bilibili.com/26855033', icon: 'bilibili' },
+        { text: '小红书', href: 'https://xhslink.com/m/2RMZVLwWhzE', icon: 'xiaohongshu' }
     ],
     hero: {
         title: '你好！',

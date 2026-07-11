@@ -7,11 +7,11 @@ tags:
   - 大模型
   - 思考
 featureImage:
-  src: 'https://img.jack-liang.com/AI-make-people-spend-more-time/pexels-fotios-photos-2267748.jpeg'
+  src: 'https://images.pexels.com/photos/16053029/pexels-photo-16053029.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
   alt: 头图
 seo:
   image:
-    src: 'https://img.jack-liang.com/AI-make-people-spend-more-time/pexels-fotios-photos-2267748.jpeg' 
+    src: 'https://images.pexels.com/photos/16053029/pexels-photo-16053029.jpeg?auto=compress&cs=tinysrgb&h=650&w=940' 
 ---
 
 作为一个日常写代码的开发者，我使用**大模型辅助编程**一两年了，最近才发现一个很反直觉的现象：本来以为AI会帮我减少**编码时间**，结果算下来，我花在coding上的总时间不仅没降，反而比之前还多了。
@@ -37,6 +37,7 @@ seo:
 
 ## 二、**沟通成本陷阱**：简单的事，反而比自己做更麻烦
 
+![](https://images.pexels.com/photos/8519258/pexels-photo-8519258.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)
 
 第二个矛盾更常见：很多简单的小修改，跟大模型来回拉扯三五轮，改出来的结果还不对，自己动手早就做完了。
 
@@ -52,6 +53,7 @@ seo:
 
 ## 三、重新理解大模型的效率：它不是省时间，是**重新分配时间**
 
+![](https://images.pexels.com/photos/11348113/pexels-photo-11348113.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)
 
 说了这么多，不是要否定AI编程的价值，而是我们一开始对它的期待就错了：我们默认AI应该「减少编码时间」，但实际上，AI改变的是**编码时间的结构**。
 

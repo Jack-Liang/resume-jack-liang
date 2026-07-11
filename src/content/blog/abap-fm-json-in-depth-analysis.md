@@ -1,6 +1,6 @@
 ---
-title: abap_fm_json 深度剖析：如何让 ABAP Function 可以通过 HTTP 调用
-excerpt: 深入研究 abap_fm_json 源代码，分析其设计决策与实现。
+title: abap_fm_json 深度剖析：如何通过 HTTP 调用 ABAP Function
+excerpt: 本文深入剖析 abap_fm_json 项目，从路由解析、动态参数构建、双通道输入映射、HTTP 调用执行、隐式契约设计到输出序列化，完整拆解其将 ABAP 函数模块暴露为 HTTP 服务的架构方案与核心实现。
 publishDate: 'Jul 10 2026'
 tags:
   - SAP
@@ -13,6 +13,7 @@ featureImage:
 seo:
   image:
     src: 'https://images.pexels.com/photos/706195/pexels-photo-706195.jpeg?auto=compress&cs=tinysrgb&h=650&w=940' 
+isFeatured: true
 ---
 
 > 这不是一篇关于 JSON 的文章。JSON 只是输出格式。

@@ -12,15 +12,19 @@ type Props = ImageInput & {
     loading?: 'lazy' | 'eager';
     fetchpriority?: 'high' | 'low' | 'auto';
     decoding?: 'async' | 'sync' | 'auto';
+    objectPosition?: string;
 };
 
-const { src, alt = '', class: className, loading = 'lazy', fetchpriority, decoding = 'async', ...rest } = Astro.props as Props;
+const { src, alt = "", class: className, loading = "lazy", fetchpriority, decoding = "async", objectPosition, ...rest } = Astro.props as Props;
+
+// 将 objectPosition 转换为 Tailwind class
+const objectPositionClass = objectPosition ? `object-[${objectPosition}]` : 'object-center';
 ---
 
 {
     typeof src === 'string' ? (
-        <img class={className} src={src} alt={alt} loading={loading} decoding={decoding} />
+        <img class={`object-cover ${objectPositionClass} ${className}`} src={src} alt={alt} loading={loading} decoding={decoding} />
     ) : (
-        <Image class={className} src={src} alt={alt} loading={loading} fetchpriority={fetchpriority} decoding={decoding} {...(rest as any)} />
+        <Image class={`object-cover ${objectPositionClass} ${className}`} src={src} alt={alt} loading={loading} fetchpriority={fetchpriority} decoding={decoding} {...rest} />
     )
 }
