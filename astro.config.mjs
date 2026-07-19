@@ -18,7 +18,26 @@ export default defineConfig({
         })
     },
     vite: {
-        plugins: [tailwindcss()]
+        plugins: [tailwindcss()],
+        build: {
+            rollupOptions: {
+                output: {
+                    manualChunks(id) {
+                        if (id.includes('pagefind')) return 'pagefind';
+                        if (id.includes('rough-notation')) return 'rough';
+                        return undefined;
+                    }
+                }
+            },
+            assetsInlineLimit: 0,
+            minify: 'terser',
+            terserOptions: {
+                compress: {
+                    drop_console: true,
+                    drop_debugger: true
+                }
+            }
+        }
     },
     integrations: [
         mdx(),

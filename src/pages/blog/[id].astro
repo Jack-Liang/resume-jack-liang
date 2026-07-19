@@ -131,5 +131,34 @@ const { Content } = await render(post);
         }
         <Subscribe class="mt-16 mb-12 sm:mt-24 sm:mb-16" />
         <Comments />
+        <button
+            id="back-to-top"
+            class="fixed bottom-8 right-8 z-50 flex items-center justify-center w-12 h-12 text-white bg-primary rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:shadow-button hover:scale-105"
+            aria-label="Back to top"
+            onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+        </button>
     </main>
+    <script is:inline>
+        (function() {
+            const backToTopBtn = document.getElementById('back-to-top');
+            if (!backToTopBtn) return;
+
+            function toggleBackToTop() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.remove('opacity-0', 'invisible');
+                    backToTopBtn.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopBtn.classList.remove('opacity-100', 'visible');
+                    backToTopBtn.classList.add('opacity-0', 'invisible');
+                }
+            }
+
+            window.addEventListener('scroll', toggleBackToTop);
+            toggleBackToTop();
+        })();
+    </script>
 </BaseLayout>

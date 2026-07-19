@@ -97,12 +97,16 @@ const dataOptions = {
             });
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            loadRoughNotation(initNotations);
-        });
-
         document.addEventListener('astro:after-swap', function() {
             loadRoughNotation(initNotations);
         });
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                loadRoughNotation(initNotations);
+            });
+        } else {
+            loadRoughNotation(initNotations);
+        }
     })();
 </script>
