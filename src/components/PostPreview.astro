@@ -57,8 +57,8 @@ const isLargeImage = imageMode === 'large';
                     <CustomImage
                         {...featureImage}
                         class="w-full h-full object-cover object-center rounded-md"
-                        widths={isLargeImage ? [480, 640, 768, 960, 1200] : [80, 160, 240]}
-                        sizes={isLargeImage ? '(min-width: 1216px) 1152px, calc(100vw - 32px)' : '160px'}
+                        widths={isLargeImage ? [480, 640, 768, 960, 1200] : [160, 240, 320]}
+                        sizes={isLargeImage ? '(min-width: 1216px) 1152px, calc(100vw - 32px)' : '224px'}
                     />
                 </a>
             </figure>
@@ -78,13 +78,14 @@ const isLargeImage = imageMode === 'large';
 
     .post-card-thumbnail {
         aspect-ratio: 4/3;
+        width: 100%;
     }
 
     .post-card-thumbnail-large {
         aspect-ratio: 21/6;
     }
 
-    @media (min-width: 1280px) {
+    @media (min-width: 640px) {
         .post-card:not(.has-large-image) {
             .post-card-header {
                 grid-area: header;
@@ -94,10 +95,11 @@ const isLargeImage = imageMode === 'large';
             }
             .post-card-thumbnail {
                 grid-area: thumbnail;
+                width: 14rem;
             }
             @apply grid gap-x-8;
             grid-template-rows: min-content 1fr;
-            grid-template-columns: 1fr 768px 1fr;
+            grid-template-columns: 14rem 1fr;
             grid-template-areas:
                 'thumbnail header'
                 'thumbnail content';

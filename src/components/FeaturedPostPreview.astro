@@ -28,7 +28,7 @@ const { title, publishDate, updatedDate, featureImage, excerpt } = post.data;
     </header>
     {
         featureImage?.src && (
-            <figure class="max-w-6xl mx-auto my-6 sm:my-8" style="aspect-ratio: 21/6;">
+            <figure class="max-w-6xl mx-auto my-6 sm:my-8" style="aspect-ratio: 21/8;">
                 <a href={`/blog/${post.id}/`}>
                     <CustomImage
                         {...featureImage}

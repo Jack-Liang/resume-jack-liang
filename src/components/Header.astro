@@ -13,7 +13,7 @@ const { class: className } = Astro.props;
     {
         siteConfig.logo?.src ? (
             <a href="/">
-                <CustomImage class="max-h-12" {...siteConfig.logo} loading="eager" fetchpriority="high" />
+                <CustomImage class="site-logo max-h-12" {...siteConfig.logo} loading="eager" fetchpriority="high" />
             </a>
         ) : (
             <a class="text-xl font-bold sm:text-2xl" href="/">
