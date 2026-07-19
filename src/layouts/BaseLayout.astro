@@ -13,12 +13,28 @@ const { ...head } = Astro.props;
 <html lang="en" class="antialiased wrap-break-word">
     <head>
         <BaseHead {...head} />
+        <script is:inline>
+            const theme = (() => {
+                if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+                    return localStorage.getItem('theme');
+                }
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    return 'dark';
+                }
+                return 'light';
+            })();
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
         <ClientRouter />
     </head>
-    <body class="bg-white text-slate-700">
+    <body class="bg-white text-slate-700 dark:bg-slate-900 dark:text-slate-300">
         <div class="flex flex-col min-h-screen">
             <slot name="header">
-                <Header class="bg-slate-50 border-b border-slate-100" />
+                <Header />
             </slot>
             <slot />
             <slot name="footer">

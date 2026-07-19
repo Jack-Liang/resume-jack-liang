@@ -12,12 +12,12 @@ if (!subscribe?.enabled || !subscribe?.form?.action) {
 
 <section
     class:list={[
-        'mx-auto flex w-full max-w-3xl flex-col items-center gap-4 rounded-md border border-slate-200 bg-slate-50 px-6 py-8 text-center sm:px-12 sm:py-14',
+        'mx-auto flex w-full max-w-3xl flex-col items-center gap-4 rounded-md border border-slate-200 bg-slate-50 px-6 py-8 text-center sm:px-12 sm:py-14 dark:border-slate-700 dark:bg-slate-800/50',
         className
     ]}
 >
-    {subscribe.title && <h2 class="max-w-xl text-2xl font-bold text-slate-900 sm:text-3xl">{subscribe.title}</h2>}
-    {subscribe.text && <p class="max-w-xl text-slate-700 sm:text-lg">{subscribe.text}</p>}
+    {subscribe.title && <h2 class="max-w-xl text-2xl font-bold text-slate-900 dark:text-slate-100 sm:text-3xl">{subscribe.title}</h2>}
+    {subscribe.text && <p class="max-w-xl text-slate-700 dark:text-slate-300 sm:text-lg">{subscribe.text}</p>}
     <form
         action={subscribe.form.action}
         method="post"
@@ -31,7 +31,7 @@ if (!subscribe?.enabled || !subscribe?.form?.action) {
             required
             autocomplete="email"
             placeholder="name@example.com"
-            class="w-full px-5 py-2 bg-white border rounded-full h-11 border-slate-200 text-slate-700 placeholder:text-slate-500 focus:outline-hidden"
+            class="w-full px-5 py-2 bg-white border rounded-full h-11 border-slate-200 text-slate-700 placeholder:text-slate-500 focus:outline-hidden dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400"
             aria-label="Email address"
         />
         {subscribe.form.hiddenFields?.map((field) => <input type="hidden" name={field.name} value={field.value} />)}

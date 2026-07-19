@@ -9,7 +9,7 @@ const primaryNavLinks = siteConfig.primaryNavLinks ?? [];
 const { class: className } = Astro.props;
 ---
 
-<header class:list={['flex items-center justify-between gap-6 px-4 py-4 sm:px-8 sm:py-6', className]}>
+<header class:list={['flex items-center justify-between gap-6 px-4 py-4 sm:px-8 sm:py-6 bg-slate-50 border-b border-slate-100 dark:bg-slate-800/50 dark:border-slate-700/50', className]}>
     {
         siteConfig.logo?.src ? (
             <a href="/">
@@ -25,8 +25,28 @@ const { class: className } = Astro.props;
         primaryNavLinks.length > 0 && (
             <nav class="relative flex items-center gap-2" aria-label="Primary navigation">
                 <button
+                    id="theme-toggle"
+                    class="inline-flex items-center justify-center w-10 h-10 text-slate-600 transition-colors duration-300 rounded-full cursor-pointer bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+                    aria-label="Toggle theme"
+                >
+                    <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2"></path>
+                        <path d="M12 20v2"></path>
+                        <path d="m4.93 4.93 1.41 1.41"></path>
+                        <path d="m17.66 17.66 1.41 1.41"></path>
+                        <path d="M2 12h2"></path>
+                        <path d="M20 12h2"></path>
+                        <path d="m6.34 17.66-1.41 1.41"></path>
+                        <path d="m19.07 4.93-1.41 1.41"></path>
+                    </svg>
+                    <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 block dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                    </svg>
+                </button>
+                <button
                     id="search-toggle"
-                    class="inline-flex items-center justify-center w-10 h-10 text-slate-600 transition-colors duration-300 rounded-full cursor-pointer bg-slate-100 hover:bg-slate-200"
+                    class="inline-flex items-center justify-center w-10 h-10 text-slate-600 transition-colors duration-300 rounded-full cursor-pointer bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 dark:hover:text-white"
                     aria-label="Search"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -35,18 +55,18 @@ const { class: className } = Astro.props;
                     </svg>
                 </button>
                 <button
-                    class="relative z-20 inline-flex items-center justify-center w-10 h-10 text-white transition-shadow duration-300 rounded-full cursor-pointer menu-toggle bg-primary hover:shadow-button"
+                    class="relative z-20 inline-flex items-center justify-center w-10 h-10 text-white transition-shadow duration-300 rounded-full cursor-pointer menu-toggle bg-primary hover:shadow-button dark:bg-[#38b2c8] dark:hover:shadow-[0_0_0_6px_rgba(56,178,200,0.2)]"
                     aria-label="Open Menu"
                     aria-expanded="false"
                     aria-controls="menu-items"
                 >
                     <span class="relative w-1 h-1 bg-white rounded-full menu-toggle-icon" />
                 </button>
-                <ul id="menu-items" class="absolute z-10 px-8 pt-16 pb-10 border menu -top-3 -right-3 border-white/40 bg-white/75 sm:px-12 sm:pt-20 sm:pb-16">
+                <ul id="menu-items" class="absolute z-10 px-8 pt-16 pb-10 border menu -top-3 -right-3 border-white/40 bg-white/75 dark:border-slate-600/40 dark:bg-slate-800/75 sm:px-12 sm:pt-20 sm:pb-16">
                     {primaryNavLinks.map((link) => (
-                        <li class="mb-1 border-b border-slate-200/70">
+                        <li class="mb-1 border-b border-slate-200/70 dark:border-slate-600/70">
                             <HeaderNavLink
-                                class="relative block py-1 pr-6 text-lg font-bold transition duration-300 text-slate-700 hover:text-slate-500 sm:text-xl"
+                                class="relative block py-1 pr-6 text-lg font-bold transition duration-300 text-slate-700 hover:text-slate-500 dark:text-slate-200 dark:hover:text-white sm:text-xl"
                                 href={link.href}
                             >
                                 {link.text}
@@ -61,8 +81,8 @@ const { class: className } = Astro.props;
 
 <div id="search-modal" class="fixed inset-0 z-50 hidden" aria-hidden="true">
     <div id="search-backdrop" class="fixed inset-0 backdrop-blur-sm bg-black/30"></div>
-    <div id="search-container" class="search-container absolute left-1/2 -translate-x-1/2 w-[90vw] max-w-xl bg-white rounded-2xl shadow-2xl overflow-hidden" style="top: 15vh;">
-        <div class="p-4">
+    <div id="search-container" class="search-container absolute left-1/2 -translate-x-1/2 w-[90vw] max-w-4xl bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden" style="top: 15vh;">
+        <div class="p-6">
             <Search />
         </div>
     </div>
@@ -141,78 +161,108 @@ const { class: className } = Astro.props;
 </style>
 
 <script>
-    function menuToggle() {
+    // Theme Toggle
+    document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        document.dispatchEvent(new CustomEvent('theme-change', { detail: { isDark } }));
+    });
+
+    // Menu Toggle
+    document.querySelector('.menu-toggle')?.addEventListener('click', function(this: HTMLButtonElement) {
         const menu = document.querySelector('.menu');
-        const menuToggleBtn = document.querySelector('.menu-toggle');
         const menuToggleIcon = document.querySelector('.menu-toggle-icon');
-        menuToggleBtn?.addEventListener('click', () => {
-            const isMenuExpanded = menuToggleBtn.getAttribute('aria-expanded') === 'true';
-            menuToggleBtn.setAttribute('aria-expanded', isMenuExpanded ? 'false' : 'true');
-            menuToggleBtn.setAttribute('aria-label', isMenuExpanded ? 'Open Menu' : 'Close Menu');
+        const isMenuExpanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', isMenuExpanded ? 'false' : 'true');
+        this.setAttribute('aria-label', isMenuExpanded ? 'Open Menu' : 'Close Menu');
+        menuToggleIcon?.classList.toggle('is-active');
+        menu?.classList.toggle('is-visible');
+    });
+
+    // Search Modal
+    const searchToggle = document.getElementById('search-toggle');
+    const searchModal = document.getElementById('search-modal');
+    const searchContainer = document.getElementById('search-container');
+    const searchBackdrop = document.getElementById('search-backdrop');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+
+    function closeSearch() {
+        searchModal?.classList.add('hidden');
+        searchModal?.setAttribute('aria-hidden', 'true');
+        if (searchContainer) {
+            searchContainer.style.maxHeight = '';
+            searchContainer.style.overflowY = '';
+        }
+        const input = document.getElementById('search-input') as HTMLInputElement;
+        if (input) input.value = '';
+        const results = document.getElementById('search-results');
+        if (results) {
+            results.innerHTML = `
+                <div class="text-center text-slate-400 py-8">
+                    <span class="text-4xl">🔍</span>
+                    <p class="mt-2 text-sm">输入关键词开始搜索</p>
+                </div>
+            `;
+        }
+    }
+
+    function openSearch() {
+        searchModal?.classList.remove('hidden');
+        searchModal?.setAttribute('aria-hidden', 'false');
+        setTimeout(() => searchInput?.focus(), 100);
+    }
+
+    searchToggle?.addEventListener('click', () => {
+        openSearch();
+        document.querySelector('.menu')?.classList.remove('is-visible');
+    });
+
+    document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        if (target.id === 'search-close' || target.closest('#search-close')) {
+            closeSearch();
+        }
+        if (target.id === 'search-backdrop') {
+            closeSearch();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !searchModal?.classList.contains('hidden')) {
+            closeSearch();
+        }
+    });
+
+    document.addEventListener('astro:after-swap', () => {
+        // Restore theme from localStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else if (savedTheme === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Re-attach theme toggle
+        document.getElementById('theme-toggle')?.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Re-attach menu toggle
+        document.querySelector('.menu-toggle')?.addEventListener('click', function(this: HTMLButtonElement) {
+            const menu = document.querySelector('.menu');
+            const menuToggleIcon = document.querySelector('.menu-toggle-icon');
+            const isMenuExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', isMenuExpanded ? 'false' : 'true');
+            this.setAttribute('aria-label', isMenuExpanded ? 'Open Menu' : 'Close Menu');
             menuToggleIcon?.classList.toggle('is-active');
             menu?.classList.toggle('is-visible');
         });
-    }
 
-    function searchModal() {
-        const searchToggle = document.getElementById('search-toggle');
-        const searchModal = document.getElementById('search-modal');
-        const searchContainer = document.getElementById('search-container');
-        const searchBackdrop = document.getElementById('search-backdrop');
-        const searchInput = document.getElementById('search-input') as HTMLInputElement;
-
-        function closeSearch() {
-            searchModal?.classList.add('hidden');
-            searchModal?.setAttribute('aria-hidden', 'true');
-            if (searchContainer) {
-                searchContainer.style.maxHeight = '';
-                searchContainer.style.overflowY = '';
-            }
-            const input = document.getElementById('search-input') as HTMLInputElement;
-            if (input) input.value = '';
-            const results = document.getElementById('search-results');
-            if (results) {
-                results.innerHTML = `
-                    <div class="text-center text-slate-400 py-8">
-                        <span class="text-4xl">🔍</span>
-                        <p class="mt-2 text-sm">输入关键词开始搜索</p>
-                    </div>
-                `;
-            }
-        }
-
-        function openSearch() {
-            searchModal?.classList.remove('hidden');
-            searchModal?.setAttribute('aria-hidden', 'false');
-            setTimeout(() => searchInput?.focus(), 100);
-        }
-
-        searchToggle?.addEventListener('click', () => {
+        // Re-attach search toggle
+        document.getElementById('search-toggle')?.addEventListener('click', () => {
             openSearch();
             document.querySelector('.menu')?.classList.remove('is-visible');
         });
-
-        document.addEventListener('click', (e) => {
-            const target = e.target as HTMLElement;
-            if (target.id === 'search-close' || target.closest('#search-close')) {
-                closeSearch();
-            }
-            if (target.id === 'search-backdrop') {
-                closeSearch();
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !searchModal?.classList.contains('hidden')) {
-                closeSearch();
-            }
-        });
-    }
-
-    menuToggle();
-    searchModal();
-    document.addEventListener('astro:after-swap', () => {
-        menuToggle();
-        searchModal();
     });
 </script>

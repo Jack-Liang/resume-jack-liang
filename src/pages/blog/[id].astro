@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
+import Comments from '../../components/Comments.astro';
 import CustomImage from '../../components/CustomImage.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import ReadNextPostPreview from '../../components/ReadNextPostPreview.astro';
@@ -30,7 +31,7 @@ const { Content } = await render(post);
     <main class="px-4 py-12 grow sm:px-8 sm:py-16">
         <article class="max-w-6xl mx-auto mb-12 sm:mb-16">
             <header class="max-w-3xl mx-auto mb-6 sm:mb-8">
-                <div class="mb-3 text-sm tracking-wider uppercase text-slate-500">
+                <div class="mb-3 text-sm tracking-wider uppercase text-slate-500 dark:text-slate-400">
                     {
                         isFeatured && (
                             <>
@@ -51,14 +52,14 @@ const { Content } = await render(post);
                         )
                     }
                 </div>
-                <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">{title}</h1>
+                <h1 class="text-3xl font-bold text-slate-900 dark:text-slate-100 sm:text-4xl md:text-5xl">{title}</h1>
                 {
                     tags && tags.length > 0 && (
                         <div class="mt-4 flex flex-wrap gap-2">
                             {tags.map((tag) => (
                                 <a
                                     href={`/blog/tag/${tag}`}
-                                    class="px-2 py-1 text-xs font-medium rounded-full bg-slate-100 text-slate-600 hover:bg-primary hover:text-white transition-colors"
+                                    class="px-2 py-1 text-xs font-medium rounded-full bg-slate-100 text-slate-600 hover:bg-primary hover:text-white transition-colors dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-primary dark:hover:text-white"
                                 >
                                     {tag}
                                 </a>
@@ -129,5 +130,6 @@ const { Content } = await render(post);
             )
         }
         <Subscribe class="mt-16 mb-12 sm:mt-24 sm:mb-16" />
+        <Comments />
     </main>
 </BaseLayout>

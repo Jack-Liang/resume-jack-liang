@@ -1,0 +1,63 @@
+---
+export interface Props {
+    title?: string;
+}
+
+const { title = '评论' } = Astro.props;
+---
+
+<section class="max-w-3xl mx-auto mt-16 mb-12 sm:mt-24 sm:mb-16">
+    <h2 class="after:bg-primary mb-8 text-sm tracking-wider text-slate-900 dark:text-white uppercase after:mt-4 after:block after:h-px after:w-16 after:content-[''] sm:mb-12">
+        {title}
+    </h2>
+    <div class="giscus"></div>
+</section>
+
+<script is:inline>
+    (function() {
+        const giscusTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        
+        const script = document.createElement('script');
+        script.src = 'https://giscus.app/client.js';
+        script.setAttribute('data-repo', 'Jack-Liang/resume-jack-liang');
+        script.setAttribute('data-repo-id', 'R_kgDOSPiksg');
+        script.setAttribute('data-category', 'Announcements');
+        script.setAttribute('data-category-id', 'DIC_kwDOSPikss4DBhXo');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-strict', '0');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '0');
+        script.setAttribute('data-input-position', 'bottom');
+        script.setAttribute('data-theme', giscusTheme);
+        script.setAttribute('data-lang', 'zh-CN');
+        script.setAttribute('data-loading', 'lazy');
+        script.crossOrigin = 'anonymous';
+        script.async = true;
+        
+        const container = document.querySelector('.giscus');
+        if (container) {
+            container.appendChild(script);
+        }
+        
+        function updateGiscusTheme(isDark) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe) {
+                iframe.contentWindow.postMessage(
+                    { giscus: { setConfig: { theme: isDark ? 'dark' : 'light' } } },
+                    'https://giscus.app'
+                );
+            }
+        }
+        
+        document.addEventListener('theme-change', function(e) {
+            updateGiscusTheme(e.detail.isDark);
+        });
+        
+        const observer = new MutationObserver(function() {
+            const isDark = document.documentElement.classList.contains('dark');
+            updateGiscusTheme(isDark);
+        });
+        
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    })();
+</script>

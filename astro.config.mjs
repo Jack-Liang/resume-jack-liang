@@ -3,15 +3,21 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import pagefind from 'astro-pagefind';
 import { defineConfig } from 'astro/config';
+import remarkGlobalComponents from './src/remark/global-components.mjs';
 
 export default defineConfig({
     site: 'https://jack-liang.com',
     output: 'static',
+    devToolbar: {
+        enabled: false
+    },
     vite: {
         plugins: [tailwindcss()]
     },
     integrations: [
-        mdx(),
+        mdx({
+            remarkPlugins: [remarkGlobalComponents]
+        }),
         sitemap(),
         pagefind({
             indexConfig: {

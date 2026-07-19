@@ -14,6 +14,7 @@ const siteConfig: SiteConfig = {
     },
     primaryNavLinks: [
         { text: '首页', href: '/' },
+        { text: '随想', href: '/notes' },
         { text: '文章', href: '/blog' },
         { text: '关于我', href: '/about' },
         { text: '和我联系', href: '/contact' }

@@ -1,0 +1,108 @@
+---
+interface Props {
+    type?: string;
+    color?: string;
+    animate?: boolean;
+    animationDelay?: number;
+    animationDuration?: number;
+    strokeWidth?: number;
+    padding?: number;
+    iterations?: number;
+    className?: string;
+    show?: boolean;
+    brackets?: string[];
+}
+
+const {
+    type = 'underline',
+    color = '#000000',
+    animate = true,
+    animationDelay = 0,
+    animationDuration = 800,
+    strokeWidth = 3,
+    padding = 5,
+    iterations = 2,
+    className = '',
+    show = true,
+    brackets
+} = Astro.props;
+
+const dataOptions = {
+    type,
+    color,
+    animate,
+    animationDelay,
+    animationDuration,
+    strokeWidth,
+    padding,
+    iterations,
+    show,
+    ...(brackets && { brackets })
+};
+---
+
+<span 
+    class:list={['notation-target inline-block', className]}
+    data-notation-options={JSON.stringify(dataOptions)}
+>
+    <slot />
+</span>
+
+<script is:inline>
+    (function() {
+        let isLoading = false;
+        let callbacks = [];
+
+        function loadRoughNotation(callback) {
+            if (window.RoughNotation) {
+                callback();
+                return;
+            }
+            if (isLoading) {
+                callbacks.push(callback);
+                return;
+            }
+            isLoading = true;
+            callbacks.push(callback);
+
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/rough-notation@latest/lib/rough-notation.iife.js';
+            script.onload = function() {
+                isLoading = false;
+                callbacks.forEach(function(cb) { cb(); });
+                callbacks = [];
+            };
+            script.onerror = function() {
+                isLoading = false;
+                callbacks = [];
+                console.error('Failed to load Rough Notation');
+            };
+            document.head.appendChild(script);
+        }
+
+        function initNotations() {
+            const elements = document.querySelectorAll('.notation-target[data-notation-options]');
+            elements.forEach(function(el) {
+                if (el.dataset.notationInitialized === 'true') return;
+                
+                const opts = JSON.parse(el.dataset.notationOptions);
+                
+                const annotation = RoughNotation.annotate(el, opts);
+                
+                if (opts.show) {
+                    annotation.show();
+                }
+                
+                el.dataset.notationInitialized = 'true';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRoughNotation(initNotations);
+        });
+
+        document.addEventListener('astro:after-swap', function() {
+            loadRoughNotation(initNotations);
+        });
+    })();
+</script>
