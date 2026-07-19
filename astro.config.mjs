@@ -1,3 +1,4 @@
+import { unified } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
@@ -11,13 +12,16 @@ export default defineConfig({
     devToolbar: {
         enabled: false
     },
+    markdown: {
+        processor: unified({
+            remarkPlugins: [remarkGlobalComponents]
+        })
+    },
     vite: {
         plugins: [tailwindcss()]
     },
     integrations: [
-        mdx({
-            remarkPlugins: [remarkGlobalComponents]
-        }),
+        mdx(),
         sitemap(),
         pagefind({
             indexConfig: {
