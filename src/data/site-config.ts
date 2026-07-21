@@ -7,7 +7,7 @@ const siteConfig: SiteConfig = {
         alt: 'Jack Liang logo'
     },
     title: 'Jack-Liang',
-    description: 'Jack Liang 的个人网站',
+    description: 'ABAP 开发者 · 记录代码与生活的点滴',
     image: {
         src: 'https://img.jack-liang.com/00-headImage/avatar.jpg',
         alt: 'Jack Liang - 个人社交媒体链接'
