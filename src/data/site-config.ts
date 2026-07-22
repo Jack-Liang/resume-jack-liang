@@ -7,7 +7,7 @@ const siteConfig: SiteConfig = {
         alt: 'Jack Liang logo'
     },
     title: 'Jack-Liang',
-    description: 'Jack Liang 的个人网站',
+    description: 'ABAP 开发者 · 记录代码与生活的点滴',
     image: {
         src: 'https://img.jack-liang.com/00-headImage/avatar.jpg',
         alt: 'Jack Liang - 个人社交媒体链接'
@@ -43,12 +43,12 @@ const siteConfig: SiteConfig = {
     },
     subscribe: {
         enabled: false,
-        title: '订阅 Ovidius 新闻letter',
-        text: '每周更新一次，直接在您的收件箱中接收最新新闻。',
+        title: '订阅更新',
+        text: '有新文章或随想时，邮件通知你。',
         form: {
-            action: 'https://justgoodthemes.us3.list-manage.com/subscribe/post?u=78f1bab16028354caeb23aecd&amp;id=4a7330d117&amp;f_id=005c48e2f0',
+            action: '',
             emailFieldName: 'EMAIL',
-            honeypotFieldName: 'b_78f1bab16028354caeb23aecd_4a7330d117'
+            honeypotFieldName: ''
         }
     },
     postsPerPage: 5
