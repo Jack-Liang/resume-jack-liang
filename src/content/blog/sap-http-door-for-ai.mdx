@@ -1,0 +1,164 @@
+---
+title: 给 SAP 开一扇 HTTP 小门：一个 curl 就能让 AI 调任意 BAPI
+excerpt: 我最近新写的开源项目 rust_sap_rfc —— 用 Rust 标准库 FFI 直连 SAP NWRFC SDK，把它包装成一个常驻的 HTTP 服务，提供通用 /api/rfc 端点调用任意 RFC/BAPI，并附带 5 个面向 AI 的元数据查询 API，让 Python / Node / Java / AI Agent 都能不安装 SAP 客户端直接调 SAP。
+publishDate: 'Aug 08 2026'
+tags:
+  - SAP
+  - Rust
+  - RFC
+  - BAPI
+  - FFI
+  - AI
+featureImage:
+  src: 'https://images.pexels.com/photos/277574/pexels-photo-277574.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+  alt: rust_sap_rfc
+seo:
+  image:
+    src: 'https://images.pexels.com/photos/277574/pexels-photo-277574.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+---
+
+我让 AI 直接去 SAP 里查了一下有哪些用户。
+
+<Notation type="highlight" color="#fef08a">没有写一行代码，没有装任何 SAP
+客户端，甚至我都没告诉它该调哪个函数</Notation>。它自己搜、自己查文档、自己调用，然后把结果整理成了自然语言。
+
+这是怎么做到的？
+
+先看效果，再说原理。
+
+# 先看效果：AI 自己搞定 SAP
+
+我跟 Agent 说了一句话：
+
+> 帮我看看 SAP 系统里有哪些用户，列出来。
+
+然后它自己干了这几件事：
+
+1. 先去搜索有哪些跟"用户"相关的 BAPI 函数
+2. 找到 `BAPI_USER_GETLIST`，查它的接口定义和文档
+3. 搞清楚输入参数怎么传、输出表有哪些字段
+4. 发起调用，拿到结果
+5. 把返回的 JSON 整理成人类能读的列表
+
+全程我没有介入，也没有提前给它任何 SAP 知识。
+
+![Agent 对话全过程](https://img.jack-liang.com/rust-sap-rfc-gateway/p1.gif)
+
+这背后就是我最近做的开源项目 `rust_sap_rfc`。说穿了很简单：把 SAP NWRFC SDK
+整个封进一个 Rust 服务里，外面只留 HTTP 端点和一组元数据
+API。任何语言、任何工具、任何 AI Agent，只要会发 POST 请求，就能直接调 SAP。
+
+# 一个 curl 就能调任意 BAPI
+
+<Notation type="underline" color="#ef4444" animationDelay={200}>对于普通开发者来说</Notation>，调用方式也非常简单：
+
+```bash
+curl -X POST http://localhost:3000/api/rfc \
+  -H "Content-Type: application/json" \
+  -d '{
+    "func_name": "BAPI_USER_GETLIST",
+    "inputs": { "MAX_ROWS": 50, "WITH_USERNAME": "X" },
+    "table_outputs": {
+      "USERLIST": [
+        {"name": "USERNAME"},
+        {"name": "FIRSTNAME"},
+        {"name": "LASTNAME"}
+      ]
+    }
+  }'
+```
+
+返回就是标准 JSON，直接能用。
+
+![curl 调用 + 返回结果](https://img.jack-liang.com/rust-sap-rfc-gateway/p2.png)
+
+一个 /api/rfc 接口全部搞定，<Notation type="highlight" color="#86efac" animationDelay={400}>不用为每个 BAPI 写适配代码，加新函数不用发版本，换个
+SAP 系统也不用重新适配</Notation>。
+
+调用方<Notation type="box" color="#3b82f6" animationDelay={600}>零 SAP 依赖、零 RFC 概念负担</Notation>。Python 用 requests、Node 用
+fetch、甚至直接用 curl 都行。
+
+# 给 AI 的"导航系统"
+
+如果只是把 RFC 包成 HTTP，那这事还不够好玩。真正的关键是——我专门为 AI Agent
+设计了 5 个元数据端点。
+
+AI 调用 SAP 的最大障碍，<Notation type="strike-through" color="#6b7280" animationDelay={200}>不是"不会调"</Notation>，而是<Notation type="highlight" color="#fbbf24" animationDelay={400}>"不知道调什么"</Notation>。SAP
+系统里上万个函数，Agent 怎么知道哪个是干什么的？
+
+这 5 个端点就是给 Agent 用的导航系统：
+
+- 搜索函数：按通配符搜，比如 `BAPI_USER_*`
+- 查接口定义：参数名、类型、方向、嵌套结构
+- 查文档：短文本 + SE37 长文档 + 参数说明
+- 查 DDIC 结构：表和结构的字段定义
+- 查字段语义：数据元素、域、固定值
+
+标准工作流就是：<Notation type="box" color="#8b5cf6" animationDelay={600}>搜索 → 查接口 → 查文档 → 调用</Notation>。Agent
+完全自服务，不需要人告诉它该调哪个函数。
+
+![元数据端点返回样例](https://img.jack-liang.com/rust-sap-rfc-gateway/p3.png)
+
+这才是把 SAP 从"只有人能用的系统"变成<Notation type="circle" color="#10b981" animationDelay={800}>"AI 能用的系统"</Notation>的关键一步。
+
+# 传统 SAP 集成的卡点
+
+说回为什么要做这个项目。做 SAP 的人大概都有过这种体验：想让外部系统调一下 SAP
+里的函数，光前置工作就能折腾好几天。
+
+不管你用 Python、Java 还是 Node.js，接入 SAP 的套路基本一样：先装 SAP NWRFC
+SDK（私有 C 库，受版权限制不能随便分发），再引入对应语言的 binding，然后为每个
+BAPI 手写参数描述——参数名、类型、字段长度，错一个就报错。
+
+痛点很实在：
+
+- **每种语言各来一遍**：Python 有 PyRFC，Node 有 node-rfc，Java 有
+  JCo……换个语言等于重新踩一遍坑
+- **每个 BAPI 都要写适配**：上万个函数，根本写不完
+- **部署麻烦**：每台机器都得装 SAP SDK，CI 镜像里也得塞
+- **AI 根本用不了**：Agent 想自己找函数、自己调函数？门都没有
+
+这些问题的根源其实是<Notation type="underline" color="#ef4444" animationDelay={1000}>同一个：SAP
+的协议绑定和业务逻辑混在一起了</Notation>。每换一个语言、每加一个函数，都得重新做一遍"翻译"工作。
+
+# 我的解法：把 SDK 封装起来，外面全用 HTTP
+
+`rust_sap_rfc` 的思路说穿了很简单：把 SAP SDK 整个隔离在一个 Rust
+服务里，外面只留 HTTP + JSON。
+
+SAP
+协议绑定、连接池、字符集处理、参数描述，全部由这一个服务承担。外面任何语言、任何工具、任何
+AI Agent，只要会发 POST，就能调 SAP。
+
+![适配多种语言](https://img.jack-liang.com/rust-sap-rfc-gateway/p4.png)
+
+为什么选 Rust？三个原因：
+
+第一，FFI 是一等公民。`extern "C"` 直接调 SAP C SDK，几乎零开销。Python 或
+Node.js 做这种程度的 FFI 绑定，要么性能差，要么胶水代码一大堆。
+
+第二，异步和连接池天然契合。tokio + axum 处理"长连接 +
+高并发请求"的网关场景，非常顺手。
+
+第三，单文件二进制部署。编译出来就是一个可执行文件，扔 Docker 镜像里干干净净。
+
+# 这件事背后的方法论
+
+从这个项目里抽出来的思路，其实可以复用到很多场景：
+
+把昂贵的、平台依赖的、版权受限的东西隔离在单一服务里，外部用最通用的协议通信。
+这是第一层。
+
+用运行时内省加缓存，替代代码生成和编译时绑定，维护成本会低一个数量级。
+这是第二层。
+
+如果你的系统要给 AI 用，<Notation type="highlight" color="#fef08a" animationDelay={1400}>元数据 API 不是锦上添花，是必需品</Notation>。 AI
+需要自己探索、自己理解、自己调用——你不能指望它像人一样先读三个月文档。
+
+SAP 圈子里有个老笑话："SAP 什么都能做，但什么都不好做。"
+我做这个项目的初衷，就是想让它稍微好做一点——至少，让一个刚接触的新人不用先花一周搭环境，让一个
+AI Agent 不用先学半年 ABAP 才能上手。
+
+![项目 GitHub 截图](https://img.jack-liang.com/rust-sap-rfc-gateway/p5.png)
+
+如果你也在折腾 SAP 和 AI 的结合，欢迎来聊聊。
