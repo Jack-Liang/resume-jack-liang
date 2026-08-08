@@ -83,10 +83,14 @@ fetch、甚至直接用 curl 都行。
 如果只是把 RFC 包成 HTTP，那这事还不够好玩。真正的关键是——我专门为 AI Agent
 设计了 5 个元数据端点。
 
-AI 调用 SAP 的最大障碍，<Notation type="strike-through" color="#6b7280" animationDelay={200}>不是"不会调"</Notation>，而是<Notation type="highlight" color="#fbbf24" animationDelay={400}>"不知道调什么"</Notation>。SAP
+![欢迎页](https://img.jack-liang.com/rust-sap-rfc-gateway/p6.jpeg)
+
+AI 调用 SAP 的最大障碍，不是"不会调"，而是<Notation type="highlight" color="#fbbf24" animationDelay={400}>"不知道调什么"</Notation>。SAP
 系统里上万个函数，Agent 怎么知道哪个是干什么的？
 
-这 5 个端点就是给 Agent 用的导航系统：
+只要把上图的链接修改 AI。
+
+他将根据这 5 个端点自助构建导航系统：
 
 - 搜索函数：按通配符搜，比如 `BAPI_USER_*`
 - 查接口定义：参数名、类型、方向、嵌套结构
