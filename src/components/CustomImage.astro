@@ -15,16 +15,52 @@ type Props = ImageInput & {
     objectPosition?: string;
 };
 
-const { src, alt = "", class: className, loading = "lazy", fetchpriority, decoding = "async", objectPosition, ...rest } = Astro.props as Props;
+const { src, alt = "", class: className, loading = "lazy", fetchpriority, decoding = "async", objectPosition, width, height, widths, sizes, ...rest } = Astro.props as Props;
 
 // 将 objectPosition 转换为 Tailwind class
 const objectPositionClass = objectPosition ? `object-[${objectPosition}]` : 'object-center';
+
+// Cloudflare Image Resizing：仅对本 zone（由 astro.config 的 site 推导）下的远程图生成响应式 srcset。
+// 形如 https://img.jack-liang.com/cdn-cgi/image/width=800,format=auto,quality=80/path/img.jpg
+const QUALITY = 80;
+const zone = Astro.site ? new URL(Astro.site).hostname : '';
+
+function isOnZone(url: string): boolean {
+    try {
+        const host = new URL(url).hostname;
+        return host === zone || host.endsWith('.' + zone);
+    } catch {
+        return false;
+    }
+}
+
+function cfTransform(url: string, w: number): string {
+    const u = new URL(url);
+    return `${u.origin}/cdn-cgi/image/width=${w},format=auto,quality=${QUALITY}${u.pathname}${u.search}`;
+}
+
+const stringSrc = typeof src === 'string' ? src : '';
+const widthsArr = Array.isArray(widths) ? widths : [];
+const canResize = stringSrc !== '' && isOnZone(stringSrc) && widthsArr.length > 0;
+const srcset = canResize ? widthsArr.map((w) => `${cfTransform(stringSrc, w)} ${w}w`).join(', ') : undefined;
+const resolvedSrc = canResize ? cfTransform(stringSrc, Math.max(...widthsArr)) : stringSrc;
 ---
 
 {
     typeof src === 'string' ? (
-        <img class={`object-cover ${objectPositionClass} ${className}`} src={src} alt={alt} loading={loading} decoding={decoding} />
+        <img
+            class={`object-cover ${objectPositionClass} ${className}`}
+            src={resolvedSrc}
+            srcset={srcset}
+            sizes={sizes}
+            alt={alt}
+            loading={loading}
+            decoding={decoding}
+            width={width}
+            height={height}
+            fetchpriority={fetchpriority}
+        />
     ) : (
-        <Image class={`object-cover ${objectPositionClass} ${className}`} src={src} alt={alt} loading={loading} fetchpriority={fetchpriority} decoding={decoding} {...rest} />
+        <Image class={`object-cover ${objectPositionClass} ${className}`} src={src} alt={alt} loading={loading} fetchpriority={fetchpriority} decoding={decoding} widths={widths} sizes={sizes} {...rest} />
     )
 }
