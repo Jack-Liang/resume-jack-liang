@@ -69,7 +69,7 @@ const dataOptions = {
             callbacks.push(callback);
 
             const script = document.createElement('script');
-            script.src = 'https://unpkg.com/rough-notation@latest/lib/rough-notation.iife.js';
+            script.src = 'https://unpkg.com/rough-notation@0.5.1/lib/rough-notation.iife.js';
             script.onload = function() {
                 isLoading = false;
                 callbacks.forEach(function(cb) { cb(); });
