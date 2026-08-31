@@ -42,12 +42,14 @@ const siteConfig: SiteConfig = {
         }
     },
     subscribe: {
-        enabled: false,
+        enabled: true,
         title: '订阅更新',
         text: '有新文章或随想时，邮件通知你。',
         form: {
-            action: '',
-            emailFieldName: 'EMAIL',
+            // Buttondown 订阅端点：注册 https://buttondown.com 后，
+            // 把用户名换成你自己的（后台 Settings → Embedding → Form 里有现成的 action 地址）
+            action: 'https://buttondown.com/api/emails/embed-subscribe/YOUR_BUTTONDOWN_USERNAME',
+            emailFieldName: 'email',
             honeypotFieldName: ''
         }
     },
