@@ -33,6 +33,19 @@ export type Subscribe = {
     form?: SubscribeForm;
 };
 
+export type ForAgent = {
+    enabled?: boolean;
+    cardTitle?: string;
+    cardText?: string;
+    cardCta?: string;
+    pageTitle?: string;
+    pageIntro?: string;
+    /** 短启动指令（用户复制后粘贴给 Agent，引导 Agent 读取 ai-subscription.md） */
+    systemPrompt?: string;
+    /** AI 订阅规则全文内容（Agent 通过 GET /for-agent/ai-subscription.md 读取，人类页面不展示） */
+    agentProtocol?: string;
+};
+
 export type SiteConfig = {
     logo?: ImageInput;
     title: string;
@@ -43,5 +56,6 @@ export type SiteConfig = {
     socialLinks?: SocialLink[];
     hero?: Hero;
     subscribe?: Subscribe;
+    forAgent?: ForAgent;
     postsPerPage?: number;
 };

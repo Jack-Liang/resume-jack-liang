@@ -1,0 +1,215 @@
+---
+import siteConfig from '../data/site-config';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const config = siteConfig.forAgent;
+const pageTitle = config?.pageTitle ?? '让 AI 自动帮你关注网站更新';
+const pageIntro =
+    config?.pageIntro ??
+    '不用注册邮箱、不用开推送。只要复制一段 3 行的消息发给你常用的 AI 助手，它就会自动帮你留意本站，下次再聊天时如果有新文章或新随想，它会主动告诉你。';
+
+// 用户复制后直接粘贴给 AI 的短消息（3 行以内）
+// 含 {{BASE_URL}} 占位符，客户端点击复制时 / 渲染显示时都替换为真实 origin
+const systemPromptTemplate =
+    config?.systemPrompt ??
+    `我想让你帮我关注 Jack-Liang 个人网站的更新。
+
+按下面 3 步做：
+1. 打开 {{BASE_URL}}/for-agent/ai-subscription.md
+2. 认真读里面的规则并记住
+3. 读完后回复："没问题，之后如果 Jack-Liang 网站有新内容，我会在下次对话开始时先告诉你。"`;
+
+// 订阅规则文件由 /for-agent/ai-subscription.md 端点输出，人类页面不展示
+
+const seoDescription = '复制 3 行消息发给 Claude、ChatGPT 等 AI 助手，它就会自动帮你留意网站更新，下次对话时先告诉你。';
+---
+
+<BaseLayout title={pageTitle} description={seoDescription}>
+    <main class="grow px-4 py-12 sm:px-8 sm:py-16">
+        <article class="mx-auto max-w-3xl">
+            <!-- 标题区 -->
+            <header class="mb-10 text-center">
+                <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-violet-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-violet-700 dark:bg-violet-900/40 dark:text-violet-300">
+                    <span aria-hidden="true">🤖</span>
+                    For Agent
+                </div>
+                <h1 class="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl">
+                    {pageTitle}
+                </h1>
+                <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
+                    {pageIntro}
+                </p>
+            </header>
+
+            <!-- Steps 指示器 -->
+            <div class="mb-8 flex items-center justify-center gap-2 text-sm">
+                <div class="flex items-center gap-2">
+                    <span class="flex h-6 w-6 items-center justify-center rounded-full bg-violet-600 text-xs font-bold text-white">1</span>
+                    <span class="font-semibold text-slate-700 dark:text-slate-300">复制消息</span>
+                </div>
+                <span class="h-px w-10 bg-slate-300 dark:bg-slate-700"></span>
+                <div class="flex items-center gap-2 opacity-80">
+                    <span class="flex h-6 w-6 items-center justify-center rounded-full bg-slate-300 text-xs font-bold text-slate-600 dark:bg-slate-700 dark:text-slate-300">2</span>
+                    <span class="text-slate-600 dark:text-slate-400">发给 AI 助手</span>
+                </div>
+                <span class="h-px w-10 bg-slate-300 dark:bg-slate-700"></span>
+                <div class="flex items-center gap-2 opacity-80">
+                    <span class="flex h-6 w-6 items-center justify-center rounded-full bg-slate-300 text-xs font-bold text-slate-600 dark:bg-slate-700 dark:text-slate-300">3</span>
+                    <span class="text-slate-600 dark:text-slate-400">等下次对话提醒</span>
+                </div>
+            </div>
+
+            <!-- Step 1 卡片：复制消息 + 复制按钮 -->
+            <section class="mb-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900 sm:p-8">
+                <div class="mb-4 flex items-center gap-2">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-100 text-sm font-bold text-violet-700 dark:bg-violet-900/40 dark:text-violet-300">1</span>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-slate-100">复制 3 行消息</h2>
+                </div>
+                <p class="mb-5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                    把下面这段消息粘给 AI 就行，它就会自动学习订阅规则、帮你留意网站动向。
+                </p>
+
+                <div class="group relative">
+                    <pre
+                        id="prompt-block"
+                        class="overflow-auto rounded-xl border border-slate-200 bg-slate-50 p-5 text-[13px] leading-relaxed text-slate-800 shadow-inner dark:border-slate-700 dark:bg-slate-950/60 dark:text-slate-200"
+                        style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; white-space: pre-wrap; word-break: break-word;"
+                        aria-label="Agent 启动指令"
+                        data-template={systemPromptTemplate}
+                    ><code>{systemPromptTemplate}</code></pre>
+                </div>
+
+                <div class="mt-5 flex flex-col-reverse items-start justify-end gap-3 sm:flex-row sm:items-center">
+                    <button
+                        id="copy-prompt-btn"
+                        type="button"
+                        class="group/btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:shadow-button hover:brightness-110 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900 sm:w-auto"
+                        data-default-label="📋 一键复制"
+                        data-success-label="已复制 ✓"
+                    >
+                        📋 一键复制
+                    </button>
+                </div>
+            </section>
+
+            <!-- Step 2 + Step 3 卡片行 -->
+            <div class="mb-8 grid gap-4 sm:grid-cols-2">
+                <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900 sm:p-6">
+                    <div class="mb-3 flex items-center gap-2">
+                        <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-100 text-sm font-bold text-sky-700 dark:bg-sky-900/40 dark:text-sky-300">2</span>
+                        <h2 class="text-base font-bold text-slate-900 dark:text-slate-100">粘贴给 AI 助手</h2>
+                    </div>
+                    <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                        Claude、ChatGPT、Kimi、通义千问……只要能联网的 AI 都行。AI 读到消息后会自动去读完订阅规则，然后回复你一句：<em class="not-italic rounded bg-slate-100 px-1.5 py-0.5 font-medium text-slate-800 dark:bg-slate-800 dark:text-slate-200">"没问题，之后如果有新内容我会先告诉你……"</em>。
+                    </p>
+                </section>
+
+                <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900 sm:p-6">
+                    <div class="mb-3 flex items-center gap-2">
+                        <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 text-sm font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">3</span>
+                        <h2 class="text-base font-bold text-slate-900 dark:text-slate-100">下次对话前先通知</h2>
+                    </div>
+                    <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                        之后只要再和 AI 开口聊天，如果这段时间里网站有新文章或新随想，它会在回答你正题之前，先把新内容的标题和链接说一声。没更新就安静，不打扰。
+                    </p>
+                </section>
+            </div>
+
+            <!-- Step 2 + Step 3 卡片行 END：人类可见部分到此结束 -->
+        </article>
+    </main>
+</BaseLayout>
+
+<script>
+    (() => {
+        /** 把模板中的 {{BASE_URL}} 替换为当前页面实际 origin。 */
+        function resolveWithOrigin(template: string): string {
+            const origin =
+                (typeof window !== 'undefined' && window.location && window.location.origin) || '';
+            return template.replace(/\{\{BASE_URL\}\}/g, origin);
+        }
+
+        // ========== 1) 替换页面显示的启动指令 BASE_URL ==========
+        try {
+            const promptBlock = document.getElementById('prompt-block');
+            const promptCode = promptBlock?.querySelector('code');
+            const promptTpl = promptBlock?.getAttribute('data-template') ?? '';
+            if (promptCode && promptTpl) {
+                const resolved = resolveWithOrigin(promptTpl);
+                if (resolved !== promptTpl) promptCode.textContent = resolved;
+            }
+        } catch {
+            /* 显示失败不影响复制（复制时再重新解） */
+        }
+
+        // ========== 2) 一键复制按钮 ==========
+        const btn = document.getElementById('copy-prompt-btn');
+        const promptBlock2 = document.getElementById('prompt-block');
+        if (btn && promptBlock2) {
+            const template = promptBlock2.getAttribute('data-template') ?? '';
+            const defaultLabel = btn.getAttribute('data-default-label') || btn.textContent?.trim() || '复制';
+            const successLabel = btn.getAttribute('data-success-label') || '已复制 ✓';
+            const btnEl = btn;
+
+            async function fallbackCopy(text: string): Promise<boolean> {
+                try {
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.style.position = 'fixed';
+                    ta.style.left = '-9999px';
+                    ta.style.top = '0';
+                    document.body.appendChild(ta);
+                    ta.focus();
+                    ta.select();
+                    const ok = document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    return ok;
+                } catch {
+                    return false;
+                }
+            }
+
+            function flashSuccess() {
+                btnEl.textContent = successLabel;
+                btnEl.classList.add(
+                    'ring-2',
+                    'ring-emerald-400',
+                    'ring-offset-2',
+                    'dark:ring-offset-slate-900',
+                    'brightness-105'
+                );
+                setTimeout(() => {
+                    // 恢复固定文案，避免连点时把「已复制 ✓」当成默认标签
+                    btnEl.textContent = defaultLabel;
+                    btnEl.classList.remove(
+                        'ring-2',
+                        'ring-emerald-400',
+                        'ring-offset-2',
+                        'dark:ring-offset-slate-900',
+                        'brightness-105'
+                    );
+                }, 3000);
+            }
+
+            btn.addEventListener('click', async () => {
+                const text = resolveWithOrigin(template);
+                let ok = false;
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(text);
+                        ok = true;
+                    } else {
+                        ok = await fallbackCopy(text);
+                    }
+                } catch {
+                    ok = await fallbackCopy(text);
+                }
+                if (ok) {
+                    flashSuccess();
+                } else {
+                    alert('当前浏览器不支持自动复制，请手动选中并复制「启动指令」代码块中的全部内容。');
+                }
+            });
+        }
+    })();
+</script>
