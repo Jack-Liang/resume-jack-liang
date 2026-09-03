@@ -2,7 +2,7 @@
 title: 关于我
 featureImage:
   src: 'https://img.jack-liang.com/00-headImage/about.jpeg'
-  alt: The portrait of a person
+  alt: Jack Liang 的照片
 seo:
   title: 关于我 - 个人简介
   description: 关于我个人背景、技能和经历的详细介绍页面
@@ -10,9 +10,9 @@ seo:
     src: 'https://img.jack-liang.com/00-headImage/about.jpeg' 
 ---
 
-Hi，我是 Jack Liang，一位 ABAP 开发人员，现居中国广东。
+Hi，我是 Jack Liang，一位 ABAP 开发人员。
 
-2017 年从信息管理与信息系统专业毕业后，我一直在做 SAP ABAP 开发，到现在已经 10 年了。我在两家乙方咨询公司待过，参与过不少国内 Top 500 企业的项目——从 ECC 到 S/4HANA，再到 Cloud Platform，跟着 SAP 的产品迭代一路走过来。
+2017 年从信息管理与信息系统专业毕业后，我一直在做 SAP ABAP 开发，到现在快 10 年了。我在两家乙方咨询公司待过，参与过不少国内 Top 500 企业的项目——从 ECC 到 S/4HANA，再到 BTP，跟着 SAP 的产品迭代一路走过来。
 
 SAP 是服务企业发展的管理软件。这些年用下来，我慢慢理解了编程语言和企业生产之间的互动关系，开发时能更好地理解业务需求，给出更贴合实际的方案。
 
@@ -25,7 +25,8 @@ SAP 是服务企业发展的管理软件。这些年用下来，我慢慢理解�
 - BADI/BAPI
 - OData
 - Fiori
-- RAP/CAP（ABAP RESTful Programming Model）
+- RAP（ABAP RESTful Application Programming Model）
+- CAP（SAP Cloud Application Programming Model）
 - PI/PO
 - ……
 
@@ -49,13 +50,13 @@ SAP 是服务企业发展的管理软件。这些年用下来，我慢慢理解�
 - 阿里云
 - 腾讯云
 
-## 我关注的机器学习：
+## 我关注的机器学习
 
 2018 年起，我开始持续关注机器学习和深度学习。入门时系统读过周志华的《机器学习》（西瓜书），从模型评估、决策树、神经网络一路看到支持向量机、贝叶斯和集成学习，第一次理解了机器"从数据中学规律"到底是怎么回事；后来又跟着 Goodfellow 的《深度学习》（花书）往深处走。数学底子则是边读边补的：《普林斯顿微积分读本》把微积分重新过了一遍，再跟着姜伟生的鸢尾花书系列补上线性代数和概率统计——毕竟调库谁都会，理解背后的数学才能走远。
 
 这几年也一路见证了这个领域从学术研究走向落地：从 Transformer、BERT 到 ChatGPT 引爆的大模型时代，AI 已经从"分类一朵鸢尾花"进化到能写代码、能对话的通用助手。现在我也在尝试把它和自己熟悉的 SAP 世界连接起来——上面的 sap-for-agents 项目就是第一步，让 AI Agent 能直接调用企业系统里的能力。
 
-## 关于我
+## 技术之外
 
 技术是底色，但我真正感兴趣的是理解世界运行的规律——不管是代码里的逻辑，还是历史、哲学、商业里的逻辑。
 
